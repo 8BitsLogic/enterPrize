@@ -1,0 +1,1 @@
+<?php $this->load->view('admin/training/partials/training_form'); ?>
