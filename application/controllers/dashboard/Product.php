@@ -35,11 +35,18 @@ class Product extends Basecontroller{
     }
     
     public function index() {
-        $this->data['productList'] = $this->prdObj->getAllProducts('active');
+        $this->data['productList'] = $this->prdObj->getAllProducts($this->status, '%');
         $this->loadSiteLayout($this->data['view'].'all_product', $this->data);
     }
     
-    private function checkProductLockStatus(){
+    public function detail($id) {
+        $this->getProductDetails($id);
+        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, $id);
+        !$this->data['productDetail'] ? redirect(base_url('product')) : '';
+        $this->loadSiteLayout($this->data['view'].'detial', $this->data);
+    }
+    
+    private function getProductDetails($id){
         
     }
 }

@@ -9,18 +9,18 @@
         <a href="<?php echo base_url('dashboard')?>" class="btn btn-default pull-right"> Dashboard </a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
+                <li class="btn btn-info">
                     <a class="nav-link" href="<?php echo base_url(); ?>">Home
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="btn btn-info">
                     <a class="nav-link" href="<?php echo base_url('info/disclaimer-of-warranties')?>">Disclaimer of Warranties</a>
                 </li>
-                <li class="nav-item">
+                <li class="btn btn-info">
                     <a class="nav-link" href="<?php echo base_url('info/terms-of-service')?>">Terms of Service </a>
                 </li>
-                <li class="nav-item">
+                <li class="btn btn-info">
                     <a class="nav-link" href="<?php echo base_url('info/privacy-policy')?>">Privacy Policy</a>
                 </li>
             </ul>
