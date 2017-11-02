@@ -86,23 +86,25 @@ class Productmodel extends Commonmodel {
         return $statement->rowCount() > 0 ? $result : FALSE;
     }
 
-    public function getProductTrainingListWithProductId($id) {
+    public function getProductTrainingListWithProductId($id, $status = '%') {
         $query = "SELECT * FROM tbl_r_training_product AS rtp
             LEFT JOIN tbl_training AS t ON t.pk_training_id = rtp.fk_training_id
-            WHERE rtp.fk_product_id = :id";
+            WHERE rtp.fk_product_id = :id AND t.training_status LIKE :status";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':status', $status, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $statement->rowCount() > 0 ? $result : FALSE;
     }
 
-    public function getProductTestListWithProductId($id) {
+    public function getProductTestListWithProductId($id, $status = '%') {
         $query = "SELECT * FROM tbl_r_product_test AS rpt
             LEFT JOIN tbl_test AS t ON t.pk_test_id = rpt.fk_test_id
-            WHERE rpt.fk_product_id = :id";
+            WHERE rpt.fk_product_id = :id AND t.test_status LIKE :status";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':status', $status, PDO::PARAM_STR);
         $statement->execute();
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $statement->rowCount() > 0 ? $result : FALSE;

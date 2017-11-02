@@ -9,7 +9,7 @@
             </div>
             <div class="x_content">
                 <?php
-                if (!$triningList) {
+                if (!$trainingList) {
                     ?>
                     <h4 class="col-md-12 alert alert-warning">No data found</h4>
                     <?php

@@ -37,15 +37,16 @@ class Leadmodel extends Commonmodel {
         return $statement->rowCount() > 0 ? $statement->fetchAll(PDO::FETCH_ASSOC) : $this->errorInfo($statement);
     }
 
-    public function getLeadDetail($id) {
+    public function getLeadDetail($id, $status = '%') {
         $query = "SELECT * FROM tbl_lead AS l
             LEFT JOIN tbl_agent AS a ON a.pk_agent_id = l.fk_agent_id
             LEFT JOIN tbl_product AS p ON p.pk_product_id = l.fk_product_id
-            WHERE l.pk_lead_id = :id";
+            WHERE l.pk_lead_id = :id AND l.lead_status LIKE :status";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->bindParam(':status', $status, PDO::PARAM_STR);
         $statement->execute();
-        return $statement->rowCount() > 0 ? $statement->fetch(PDO::FETCH_ASSOC) : $this->errorInfo($statement);
+        return $statement->rowCount() > 0 ? $statement->fetch(PDO::FETCH_ASSOC) : FALSE;
     }
 
     public function updateLeadStatus($param) {

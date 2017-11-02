@@ -34,7 +34,7 @@ class Training extends Basecontroller{
     }
     
     public function index() {
-        $this->data['triningList'] = $this->aTrainingObj->getAllTraining('active');
+        $this->data['trainingList'] = $this->aTrainingObj->getAllTraining('active');
         $this->loadSiteLayout($this->data['view'].'all_training', $this->data);
     }
     

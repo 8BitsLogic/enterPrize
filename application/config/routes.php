@@ -255,6 +255,9 @@ $route['test/take_test_submit/(:num)'] = 'dashboard/test/testAttempt/$1';
 // Agent Product
 $route['product'] = 'dashboard/product/index';
 $route['product/detail/(:num)'] = 'dashboard/product/detail/$1';
+$route['product/(:num)/lead'] = 'dashboard/product/loadLeadForm/$1';
+$route['product/(:num)/lead_capture'] = 'dashboard/product/leadPost/$1';
+$route['lead/detail/(:num)'] = 'dashboard/product/detailLead/$1';
 
 
 

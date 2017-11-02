@@ -79,6 +79,7 @@ class Basecontroller extends CI_Controller {
         $config['protocol'] = 'sendmail';
         $config['mailpath'] = '/usr/sbin/sendmail';
         $config['charset'] = 'iso-8859-1';
+        $config['mailtype'] = 'html';
         $config['wordwrap'] = TRUE;
 
         $this->email->initialize($config);
@@ -90,6 +91,31 @@ class Basecontroller extends CI_Controller {
 
         $this->email->subject($email['subject']);
         $this->email->message($email['message']);
+
+        return $this->email->send();
+    }
+
+    protected function sendAttachementEmail($email, $file, $from = 'no-reply@fliegentech.com', $cc = NULL) {
+
+        $config['protocol'] = 'sendmail';
+        $config['mailpath'] = '/usr/sbin/sendmail';
+        $config['charset'] = 'iso-8859-1';
+        $config['mailtype'] = 'html';
+        $config['wordwrap'] = TRUE;
+
+        $this->email->initialize($config);
+
+        $this->email->from($from);
+        $this->email->to($email['to']);
+        $this->email->cc($cc);
+//        $this->email->bcc('them@their-example.com');
+
+        $this->email->subject($email['subject']);
+        $this->email->message($email['message']);
+
+//        attach file to email;
+
+        $this->email->attach($file);
 
         return $this->email->send();
     }
@@ -130,6 +156,23 @@ class Basecontroller extends CI_Controller {
     protected function checkAgentLogin() {
         $this->agentDetail = $this->session->has_userdata($this->agentSessionKey) ? $this->session->userdata($this->agentSessionKey) : FALSE;
         return is_array($this->agentDetail) ? $this->agentObj->checkAgentisActive($this->agentDetail['pk_agent_id']) : FALSE;
+    }
+
+    protected function saveJsontoText($data, $filePath, $fileName) {
+        echo 'saving file';
+        if (!is_dir($filePath)) {
+            mkdir($filePath, 0775, TRUE);
+        }
+        $textFile = $filePath. '/' . $fileName;
+        $fh = fopen($textFile, 'w') or FALSE;
+        if ($fh) {
+            fwrite($fh, $data);
+            fclose($fh);
+            $response = TRUE;
+        }else{
+            $response = FALSE;
+        }
+        return $response;
     }
 
 }

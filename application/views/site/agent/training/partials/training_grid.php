@@ -8,7 +8,7 @@
     </thead>
     <tbody>
         <?php
-        foreach ($triningList as $training) {
+        foreach ($trainingList as $training) {
             ?>
             <tr>
                 <td><?php echo substr($training['training_title'], 0, 40); ?></td>
