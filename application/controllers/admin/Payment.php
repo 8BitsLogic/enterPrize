@@ -76,28 +76,38 @@ class Payment extends Basecontroller {
     }
 
     public function approvePR($id) {
-        $param = array(
-            'id' => $id,
-            'status' => 'approved',
-            'notes' => 'Payment request approved'
-        );
+//        get payement request details
+        $prDetail = $this->paymentObj->getPaymentRequestDetail($id);
+//        check if enough balance is available
+        $availableFunds = $this->paymentObj->getAgentsTotalAvailableFunds($prDetail['pk_agent_id']);
+//        if blance available approve transaction
+        if ($availableFunds > $prDetail['payment_request_amount']) {
+            $param = array(
+                'id' => $id,
+                'status' => 'approved',
+                'notes' => 'Payment request approved'
+            );
 //                insert transaction withdraw amount
-        $transactionResult = $this->paymentObj->insertTransactionWithdraw($id);
-        $message = $transactionResult ? str_replace($this->alertMessages['str_replace'], 'New transaction posted', $this->alertMessages['success']) :
-                str_replace($this->alertMessages['str_replace'], $transactionResult, $this->alertMessages['warning']);
+            $transactionResult = $this->paymentObj->insertTransactionWithdraw($id,$prDetail['payment_request_amount']);
+            $message = $transactionResult ? str_replace($this->alertMessages['str_replace'], 'New transaction posted', $this->alertMessages['success']) :
+                    str_replace($this->alertMessages['str_replace'], $transactionResult, $this->alertMessages['warning']);
 
 //                update payment request status to approve
-        $transactionId = $this->paymentObj->getTransactionIdforPRid($id);
-        $this->paymentObj->updatePRtransactionId($id, $transactionId);
-        $param['notes'] .= ' - Transaction# '.$transactionId;
-        $internalResult = $this->paymentObj->updatePRstatus($param);
-        $message .= $internalResult ? str_replace($this->alertMessages['str_replace'], 'Payment status approved', $this->alertMessages['success']) :
-                str_replace($this->alertMessages['str_replace'], $internalResult, $this->alertMessages['warning']);
-        
+            $transactionId = $this->paymentObj->getTransactionIdforPRid($id);
+            $this->paymentObj->updatePRtransactionId($id, $transactionId);
+            $param['notes'] .= ' - Transaction# ' . $transactionId;
+            $internalResult = $this->paymentObj->updatePRstatus($param);
+            $message .= $internalResult ? str_replace($this->alertMessages['str_replace'], 'Payment status approved', $this->alertMessages['success']) :
+                    str_replace($this->alertMessages['str_replace'], $internalResult, $this->alertMessages['warning']);
+
 //                post customer notes
-        $cusNoteResult = $this->paymentObj->updatePRcustomerNotes($id, $param['notes']);
-        $message .= $cusNoteResult ? str_replace($this->alertMessages['str_replace'], 'Customer notes posted', $this->alertMessages['success']) :
-                str_replace($this->alertMessages['str_replace'], $cusNoteResult, $this->alertMessages['warning']);
+            $cusNoteResult = $this->paymentObj->updatePRcustomerNotes($id, $param['notes']);
+            $message .= $cusNoteResult ? str_replace($this->alertMessages['str_replace'], 'Customer notes posted', $this->alertMessages['success']) :
+                    str_replace($this->alertMessages['str_replace'], $cusNoteResult, $this->alertMessages['warning']);
+        } else {
+            $message = str_replace($this->alertMessages['str_replace'], 'Not enough funds available.', $this->alertMessages['warning']);
+        }
+
         $this->session->set_flashdata('message_payment', $message);
 
         return redirect(base_url('admin/payment/detail/' . $id));
@@ -106,7 +116,7 @@ class Payment extends Basecontroller {
     public function declinePR($id) {
         if ($this->input->post('submit')) {
             if ($this->validateRejectPR()) {
-//                update payment request status to approve
+//                update payment request status to decline
                 $internalResult = $this->paymentObj->updatePRstatusN($id, 'Payment request Declined', 'declined', $this->input->post('notes'));
                 $message = $internalResult ? str_replace($this->alertMessages['str_replace'], 'Payment status Declined', $this->alertMessages['success']) :
                         str_replace($this->alertMessages['str_replace'], $internalResult, $this->alertMessages['warning']);

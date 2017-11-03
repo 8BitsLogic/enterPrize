@@ -18,18 +18,13 @@ class Paymentmodel extends Commonmodel {
         parent::__construct();
     }
 
-    public function getAllPaymentRequests($status = NULL) {
-        $query = is_null($status) ? "SELECT pr.pk_payment_request_id, pr.payment_request_amount, pr.payment_request_status, DATE_FORMAT(pr.payment_request_create_date, '%d-%m-%Y') AS 'create_date', a.pk_agent_id, a.agent_username
+    public function getAllPaymentRequests($status = '%') {
+        $query = "SELECT pr.pk_payment_request_id, pr.payment_request_amount, pr.payment_request_status, DATE_FORMAT(pr.payment_request_create_date, '%d-%m-%Y') AS 'create_date', a.pk_agent_id, a.agent_username
                  FROM tbl_payment_request AS pr
                  LEFT JOIN tbl_agent AS a ON a.pk_agent_id = pr.fk_agent_id
-                 ORDER BY payment_request_create_date DESC" :
-                "SELECT pr.pk_payment_request_id, pr.payment_request_amount, pr.payment_request_status, DATE_FORMAT(pr.payment_request_create_date, '%d-%m-%Y') AS 'create_date', a.pk_agent_id, a.agent_username
-                 FROM tbl_payment_request AS pr
-                 LEFT JOIN tbl_agent AS a ON a.pk_agent_id = pr.fk_agent_id
-                 WHERE payment_request_status = :status ORDER BY payment_request_create_date DESC";
+                 WHERE payment_request_status LIKE :status ORDER BY payment_request_create_date DESC";
         $statement = $this->prepQuery($query);
-
-        !is_null($status) ? $statement->bindParam(':status', $status, PDO::PARAM_STR) : '';
+        $statement->bindParam(':status', $status, PDO::PARAM_STR);
         $statement->execute();
         return $statement->rowCount() > 0 ? $statement->fetchAll(PDO::FETCH_ASSOC) : $this->errorInfo($statement);
     }
@@ -121,16 +116,17 @@ class Paymentmodel extends Commonmodel {
         return $statement->execute() ? TRUE : $this->errorInfo($statement);
     }
 
-    public function insertTransactionWithdraw($tId) {
+    public function insertTransactionWithdraw($prId, $amount) {
         $query = "INSERT INTO tbl_transactions (pk_transaction_id, fk_agent_id, transaction_amount, transaction_descp, transaction_type, fk_payment_request_id)
             SELECT UUID(), pr.fk_agent_id, 
-            (SELECT SUM(t.transaction_amount)*-1 FROM tbl_transactions AS t WHERE t.fk_agent_id = pr.fk_agent_id) AS 'transaction_amount',
+            (SELECT :amount*-1 FROM tbl_transactions AS t WHERE t.fk_agent_id = pr.fk_agent_id) AS 'transaction_amount',
             CONCAT(DATE_FORMAT(NOW(), '%m-%d-%Y'), ' : Withdraw processed for payment request# ', pr.pk_payment_request_id) AS 'descp', 'withdraw', pr.pk_payment_request_id
             FROM tbl_payment_request AS pr
-            WHERE pk_payment_request_id = :tId
+            WHERE pk_payment_request_id = :prId
             HAVING transaction_amount != 0";
         $statement = $this->prepQuery($query);
-        $statement->bindParam(':tId', $tId, PDO::PARAM_INT);
+        $statement->bindParam(':prId', $prId, PDO::PARAM_INT);
+        $statement->bindParam(':amount', $amount, PDO::PARAM_INT);
         return $statement->execute() ? TRUE : $this->errorInfo($statement);
     }
 

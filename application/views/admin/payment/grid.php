@@ -32,7 +32,7 @@
                                 <tr>
                                     <td><?php echo $pr['agent_username']; ?></td>
                                     <td><?php echo $pr['payment_request_amount']; ?></td>
-                                    <td><?php echo date("d-m-Y", strtotime($pr['payment_request_create_date'])); ?></td>
+                                    <td><?php echo date("d-m-Y", strtotime($pr['create_date'])); ?></td>
                                     <td>
                                         <ul>
                                             <a href="<?php echo base_url('admin/payment/detail/' . $pr['pk_payment_request_id']); ?>"><i class="fa fa-file-o"></i></a>
