@@ -1,33 +1,31 @@
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="<?php echo base_url(); ?>" style="color: red">BYOB<small style="color: #cccccc">LTD</small></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a href="<?php echo base_url('logout')?>" class="btn btn-default pull-right"> Signout </a>
-        <a href="<?php echo base_url('dashboard')?>" class="btn btn-default pull-right"> Dashboard </a>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="btn btn-info">
-                    <a class="nav-link" href="<?php echo base_url(); ?>">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="btn btn-info">
-                    <a class="nav-link" href="<?php echo base_url('info/disclaimer-of-warranties')?>">Disclaimer of Warranties</a>
-                </li>
-                <li class="btn btn-info">
-                    <a class="nav-link" href="<?php echo base_url('info/terms-of-service')?>">Terms of Service </a>
-                </li>
-                <li class="btn btn-info">
-                    <a class="nav-link" href="<?php echo base_url('info/privacy-policy')?>">Privacy Policy</a>
-                </li>
-            </ul>
+<header id="header" class="nospace">
+    <div class="holder">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <!-- mobile logo -->
+                    <div class="logo main-bg-color text-uppercase pull-left visible-xs"><a href="<?php echo base_url(); ?>"><img src="images/logo.png" alt="img" class="img-responsive"></a></div>
+                    <a href="<?php echo base_url(); ?>" class="nav-opener pull-right visible-xs"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                    <!-- page navigation start here -->
+                    <nav id="nav">
+                        <ul class="nav-list list-inline text-center">
+                            <li><a href="<?php echo base_url('training') ?>" class="smooth">trainings</a></li>
+                            <li><a href="<?php echo base_url('product') ?>" class="smooth">products</a></li>
+                            <li><a href="#" class="smooth">community</a></li>
+                            <li><a href="<?php echo base_url('test') ?>" class="smooth">tests</a></li>
+                        </ul>
+                        <ul class="nav-list list-inline text-center">
+                            <li><a href="#" class="smooth">messages</a></li>
+                            <li><a href="<?php echo base_url('dashboard/ewallet') ?>" class="smooth">e-Wallet</a></li>
+                            <li><a href="<?php echo base_url('dashboard/profile') ?>" class="smooth">profile</a></li>
+                            <li><a href="<?php echo base_url('dashboard/profile') ?>" class="smooth"><img src="<?php echo $this->themeUrl; ?>/images/img04.jpg" alt="img" class="img-responsive main-border-color img" style="display:inline">&nbsp;
+                                    <span style="display:inline;color:#ef4136">$25.00</span></a></li>
+                        </ul>
+                        <!-- desktop logo -->
+                        <div class="logo hidden-xs"><a href="<?php echo base_url(); ?>"><img src="<?php echo $this->themeUrl; ?>/images/logo.png" alt="img" class="img-responsive"></a></div>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
-<header>
-    
 </header>

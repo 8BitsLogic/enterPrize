@@ -13,37 +13,35 @@ if ($slideList) {
                 foreach ($slideList as $slide) {
                     $img = $slide["slide_link"];
                     ?>
-                    <div class="carousel-item active" style="background-image: url('<?php echo $img ?>')">
-                        <div class="carousel-caption d-none d-md-block">
-                            <!--                    <h3>First Slide</h3> -->
-                                                <!--<p>This is a description for the first slide.</p>-->
+                    <!-- start of main-banner -->
+                    <div class="main-banner bg-img-full section text-center" style="background-image: url(images/img_5445.jpg);">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <h1 class="heading text-uppercase">Introducing<br /> <span class="main-color">byob</span><span style="color: darkgrey;">LTD</span></h1>
+                                    <span class="divider main-bg-color"></span>
+                                    <p style="color: darkgray;">learn, Earn , Grow</p>
+                                    <div id="imaginary_container">
+                                        <div class="input-group stylish-input-group">
+                                            <input type="text" class="form-control" placeholder="Search Here">
+                                            <span class="input-group-addon">
+                                                <button type="submit">
+                                                    <span class="fa fa-search"></span>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <!-- end of main-banner -->
                     <?php
                 }
                 ?>
-<!--                
-                 Slide One - Set the background image for this slide in the line below 
-                <div class="carousel-item active" style="background-image: url('<?php echo $this->themeUrl . '/images/slides/1.jpg'; ?>')">
-                    <div class="carousel-caption d-none d-md-block">
-                                            <h3>First Slide</h3> 
-                                            <p>This is a description for the first slide. <?php echo $this->themeUrl . '/images/slides/1.jpg'; ?></p>
-                    </div>
-                </div>
-                 Slide Two - Set the background image for this slide in the line below 
-                <div class="carousel-item" style="background-image: url('<?php echo $this->themeUrl . '/images/slides/1.jpg'; ?>')">
-                    <div class="carousel-caption d-none d-md-block">
-                                            <h3>Second Slide</h3>
-                                            <p>This is a description for the second slide.</p>
-                    </div>
-                </div>
-                 Slide Three - Set the background image for this slide in the line below 
-                <div class="carousel-item" style="background-image: url('<?php echo $this->themeUrl . '/images/slides/1.jpg'; ?>')">
-                    <div class="carousel-caption d-none d-md-block">
-                                            <h3>Third Slide</h3>
-                                            <p>This is a description for the third slide.</p>
-                    </div>
-                </div>-->
+
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
