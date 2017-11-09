@@ -259,6 +259,8 @@ $route['product/(:num)/lead'] = 'dashboard/product/loadLeadForm/$1';
 $route['product/(:num)/lead_capture'] = 'dashboard/product/leadPost/$1';
 $route['lead/detail/(:num)'] = 'dashboard/product/detailLead/$1';
 
+//Agent Expenses
+$route['expense'] = 'dashboard/dashbaord/expenses';
 
 
 $route['default_controller'] = 'index';

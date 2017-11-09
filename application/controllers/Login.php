@@ -33,7 +33,7 @@ class Login extends Basecontroller{
     }
     
     public function index() {
-        $this->loadSiteLayout($this->data['view'].'login', $this->data);
+        $this->loadLayoutnoHF($this->data['view'].'login', $this->data);
     }
     
     public function tryLogin() {

@@ -152,4 +152,9 @@ class Dashboard extends Basecontroller {
         $this->data['prDetail'] = $this->payementObj->getPaymentRequestDetail($prId);
         $this->loadSiteLayout($this->data['view'].'payment_request_detail', $this->data);
     }
+    
+    public function expenses() {
+        $this->data['expenseList'] = $this->dashboardObj->getExpensesWtihAgentId($this->agentDetail['pk_agent_id']);
+        $this->loadSiteLayout($this->data['view'].'expenses', $this->data);
+    }
 }

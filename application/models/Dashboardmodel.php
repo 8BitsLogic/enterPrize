@@ -52,4 +52,14 @@ class Dashboardmodel extends Commonmodel{
 //        $statement->bindParam(':status', $param['status'], PDO::PARAM_STR);
         return;
     }
+    
+    public function getExpensesWtihAgentId($agentId) {
+        $query = "SELECT * FROM tbl_expenses WHERE fk_agent_id = :agentId ORDER BY expense_createtime DESC ";
+        $statement = $this->prepQuery($query);
+        
+        $statement->bindParam(':agentId', $agentId, PDO::PARAM_INT);
+        
+        $statement->execute();
+        return $statement->rowCount() > 0 ? $statement->fetchAll(PDO::FETCH_ASSOC) : FALSE;
+    }
 }

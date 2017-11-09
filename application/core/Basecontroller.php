@@ -50,6 +50,12 @@ class Basecontroller extends CI_Controller {
         $data['content'] = $this->load->view($content_path, $data, TRUE);
         $this->load->view($template . 'template', $data);
     }
+    
+    public function loadLayoutnoHF($content_path, $data = array()) {
+        $template = 'site/template/';
+        $data['content'] = $this->load->view($content_path, $data, TRUE);
+        $this->load->view($template . 'template_noHF', $data);
+    }
 
     private function setThemeUrl() {
         $this->themeUrl = base_url('public');
