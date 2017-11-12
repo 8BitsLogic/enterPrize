@@ -29,7 +29,9 @@ class Product extends Basecontroller {
             'page' => array('title' => 'Product'),
             'flashKey' => 'message_dashboard_product',
             'view' => 'site/agent/product/',
-            'leadView' => 'site/agent/lead/'
+            'leadView' => 'site/agent/lead/',
+            'agentPic' => $this->getAgentPic(),
+            'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );
 
         $this->aPrdObj = new Productmodel;

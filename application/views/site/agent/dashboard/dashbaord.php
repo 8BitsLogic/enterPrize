@@ -16,8 +16,7 @@
 </div>-->
 
 <!-- start of main-banner -->
-<div class="main-banner bg-img-full section text-center" style="background-image: url(<?php echo $this->themeUrl; ?>/images/img_5445.jpg);">
-
+<div class="main-banner bg-img-full section text-center" style="background-image: url(<?php echo $slides['0']['slide_link']; ?>);">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -46,89 +45,101 @@
         <div class="row">
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color">
-                        <img src="<?php echo $this->themeUrl; ?>/images/revenue.png" alt="img" class="img-responsive">
-                    </div>
-                    <a href="<?php echo base_url('dashboard/ewallet') ?>">
+                <a href="<?php echo base_url('dashboard/ewallet') ?>">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color">
+                            <img src="<?php echo $this->themeUrl; ?>/images/revenue.png" alt="img" class="img-responsive">
+                        </div>
+
                         <div class="content">
                             <h3 class="heading">REVENUE</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/opportunity.png" alt="img" class="img-responsive"></div>
-                    <a href="<?php echo base_url('product') ?>">
+                <a href="<?php echo base_url('product') ?>">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/opportunity.png" alt="img" class="img-responsive"></div>
+
                         <div class="content">
                             <h3 class="heading">Opportunity</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/performance.png" alt="img" class="img-responsive"></div>
-                    <a href="">
+                <a href="<?php echo base_url('test') ?>">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/performance.png" alt="img" class="img-responsive"></div>
+
                         <div class="content">
                             <h3 class="heading">performance</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
 
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/development.png" alt="img" class="img-responsive"></div>
-                    <a href="<?php echo base_url('training') ?>">
+                <a href="<?php echo base_url('training') ?>">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/development.png" alt="img" class="img-responsive"></div>
+
                         <div class="content">
                             <h3 class="heading">development</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/permote.png" alt="img" class="img-responsive"></div>
-                    <a href="">
+                <a href="">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/permote.png" alt="img" class="img-responsive"></div>
+
                         <div class="content">
                             <h3 class="heading">permote</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <div class="steps-box text-center mar-bottom-md pad-top-xs">
-                    <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/expense.png" alt="img" class="img-responsive"></div>
-                    <a href="">
+                <a href="">
+                    <div class="steps-box text-center mar-bottom-md pad-top-xs">
+                        <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/expense.png" alt="img" class="img-responsive"></div>
+
                         <div class="content">
                             <h3 class="heading">Expenses</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
-                    </a>
-                </div>
+
+                    </div>
+                </a>
                 <!-- end of steps-box -->
             </div>
 

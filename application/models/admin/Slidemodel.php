@@ -18,8 +18,8 @@ class Slidemodel extends Commonmodel {
         parent::__construct();
     }
     
-    public function getAllSlides($status = NULL) {
-        $query = is_null($status) ? "SELECT * FROM tbl_slider ORDER BY slide_create_date DESC" : "SELECT * FROM tbl_slider WHERE slide_status = :status ORDER BY slide_create_date DESC";
+    public function getAllSlides($status = '%') {
+        $query = "SELECT * FROM tbl_slider WHERE slide_status LIKE :status ORDER BY slide_status ASC, slide_number DESC";
         $statement = $this->prepQuery($query);
         !is_null($status) ? $statement->bindParam(':status', $status, PDO::PARAM_STR) : '';
         $statement->execute();

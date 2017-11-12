@@ -156,8 +156,8 @@ class Paymentmodel extends Commonmodel {
         return $statement->rowCount() > 0 ? $statement->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }
 
-    public function getAgentTransactions($id, $type) {
-        $query = "SELECT * FROM tbl_transactions WHERE fk_agent_id = :id AND transaction_type = :type";
+    public function getAgentTransactions($id, $type = '%') {
+        $query = "SELECT * FROM tbl_transactions WHERE fk_agent_id = :id AND transaction_type LIKE :type";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->bindParam(':type', $type, PDO::PARAM_STR);

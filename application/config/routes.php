@@ -238,6 +238,7 @@ $route['dashboard'] = 'dashboard/dashboard/index';
 $route['dashboard/profile'] = 'dashboard/dashboard/getProfile';
 $route['dashboard/updateProfile'] = 'dashboard/dashboard/updateProfilePost';
 $route['dashboard/updatepass'] = 'dashboard/dashboard/updatePassword';
+$route['dashboard/uploadpic'] = 'dashboard/dashboard/uploadPic';
 $route['dashboard/ewallet'] = 'dashboard/dashboard/getEwalletInfo';
 $route['dashboard/request_payment'] = 'dashboard/dashboard/processPaymentRequest';
 $route['dashboard/ewallet/payment_requst/(:num)'] = 'dashboard/dashboard/paymentRequestDetails/$1';

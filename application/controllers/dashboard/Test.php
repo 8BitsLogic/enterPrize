@@ -28,7 +28,9 @@ class Test extends Basecontroller{
         $this->data = array(
             'page' => array('title' => 'Tests'),
             'flashKey' => 'message_dashboard_test',
-            'view' => 'site/agent/test/'
+            'view' => 'site/agent/test/',
+            'agentPic' => $this->getAgentPic(),
+            'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );
         
         $this->aTestObj = new Testmodel;

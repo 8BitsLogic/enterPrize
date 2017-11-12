@@ -14,12 +14,13 @@ class Basecontroller extends CI_Controller {
     protected $agentDetail;
     protected $status = 'active';
     private $agentObj;
+    private $paymentObj;
     public $agentSessionKey;
 
     public function __construct() {
         parent::__construct();
 
-        $this->load->model(array('admin/Agentmodel'));
+        $this->load->model(array('admin/Agentmodel', 'admin/Paymentmodel'));
 
         $this->setThemeUrl();
 //        $this->themeUrl = 'http://dev.enterprize/public';
@@ -28,7 +29,25 @@ class Basecontroller extends CI_Controller {
         $this->setAlertMessages();
 
         $this->agentObj = new Agentmodel;
+        $this->paymentObj = new Paymentmodel;
         $this->agentSessionKey = 'agent_detail';
+
+    }
+
+    protected function getAgentDetail() {
+        return $this->agentDetail;
+    }
+    
+    protected function getAgentAvailableFunds($id){
+        return $this->paymentObj->getAgentsTotalAvailableFunds($id);
+    }
+
+    protected function getAgentPic() {
+        $readDir = $this->uploadPath . 'user/' . $this->agentDetail['pk_agent_id'];
+        $map = directory_map($readDir);
+        $picDir = is_array($map) ? reset($map) : '';
+        $response = $map ? $this->themeUrl.'/uploads/user/'.$this->agentDetail['pk_agent_id'].'/'.$picDir : $map;
+        return $response;
     }
 
     public function loadAdminLayout($data, $content_path) {
@@ -50,7 +69,7 @@ class Basecontroller extends CI_Controller {
         $data['content'] = $this->load->view($content_path, $data, TRUE);
         $this->load->view($template . 'template', $data);
     }
-    
+
     public function loadLayoutnoHF($content_path, $data = array()) {
         $template = 'site/template/';
         $data['content'] = $this->load->view($content_path, $data, TRUE);
@@ -169,13 +188,13 @@ class Basecontroller extends CI_Controller {
         if (!is_dir($filePath)) {
             mkdir($filePath, 0775, TRUE);
         }
-        $textFile = $filePath. '/' . $fileName;
+        $textFile = $filePath . '/' . $fileName;
         $fh = fopen($textFile, 'w') or FALSE;
         if ($fh) {
             fwrite($fh, $data);
             fclose($fh);
             $response = TRUE;
-        }else{
+        } else {
             $response = FALSE;
         }
         return $response;

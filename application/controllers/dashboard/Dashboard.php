@@ -17,25 +17,29 @@ class Dashboard extends Basecontroller {
     private $agentObj;
     private $dashboardObj;
     private $payementObj;
+    private $slideObj;
 
     public function __construct() {
         parent::__construct();
         $this->checkAgentLogin() ? '' : redirect(base_url());
 
-        $this->load->model(array('admin/Agentmodel', 'Dashboardmodel', 'admin/Paymentmodel'));
+        $this->load->model(array('admin/Agentmodel', 'Dashboardmodel', 'admin/Paymentmodel', 'admin/Slidemodel'));
 
         $this->data = array(
             'page' => array('title' => 'Dashboard'),
             'flashKey' => 'message_dashboard',
-            'view' => 'site/agent/dashboard/'
+            'view' => 'site/agent/dashboard/',
+            'agentPic' => $this->getAgentPic(),
+            'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );
-
         $this->agentObj = new Agentmodel;
         $this->dashboardObj = new Dashboardmodel;
         $this->payementObj = new Paymentmodel;
+        $this->slideObj = new Slidemodel;
     }
 
     public function index() {
+        $this->data['slides'] = $this->slideObj->getAllSlides('active');
         $this->loadSiteLayout($this->data['view'] . 'dashbaord', $this->data);
     }
 
@@ -105,56 +109,78 @@ class Dashboard extends Basecontroller {
             return redirect(base_url('dashboard/profile'));
         }
     }
-    
+
     private function validateUpdatePasswrodPost() {
         return TRUE;
     }
-    
+
     public function getEwalletInfo() {
         $id = $this->agentDetail['pk_agent_id'];
         $this->data['totalFunds'] = $this->payementObj->getAgentsTotalAvailableFunds($id);
         $this->data['totalPRpending'] = $this->payementObj->getAgentTotalPRpending($id);
         $this->data['PRpendingList'] = $this->payementObj->getAllPaymentRequestsforAgent($id, 'pending');
-        $this->data['transIn'] = $this->payementObj->getAgentTransactions($id, 'deposit');
-        $this->data['transOut'] = $this->payementObj->getAgentTransactions($id, 'withdraw');
-        $this->loadSiteLayout($this->data['view'].'e-wallet', $this->data);
+        $this->data['transactions'] = $this->payementObj->getAgentTransactions($id);
+        $this->loadSiteLayout($this->data['view'] . 'e-wallet', $this->data);
     }
-    
+
     public function processPaymentRequest() {
         $rUrl = 'dashboard/ewallet';
-        if($this->input->post('submit')){
+        if ($this->input->post('submit')) {
             $this->validatePaymentRequest();
             $param = array(
                 'amount' => $this->input->post('amount'),
                 'agentId' => $this->agentDetail['pk_agent_id'],
             );
             $result = $this->payementObj->insertPaymentRequest($param);
-            if($result['query_status']){
+            if ($result['query_status']) {
                 $message = str_replace($this->alertMessages['str_replace'], 'New payment request posted', $this->alertMessages['success']);
-                $rUrl .= '/payment_requst/'.$result['id'];
-            }else{
+                $rUrl .= '/payment_requst/' . $result['id'];
+            } else {
                 $message = str_replace($this->alertMessages['str_replace'], $result['error_info'][0] . ':' . $result['error_info'][2], $this->alertMessages['warning']);
             }
-            
-        }else{
+        } else {
             $message = str_replace($this->alertMessages['str_replace'], 'Something went wrong. Please try again.', $this->alertMessages['warning']);
-            
         }
         $this->session->set_flashdata($this->data['flashKey'], $message);
         return redirect(base_url($rUrl));
     }
-    
-    private function validatePaymentRequest(){
+
+    private function validatePaymentRequest() {
         return TRUE;
     }
-    
+
     public function paymentRequestDetails($prId) {
         $this->data['prDetail'] = $this->payementObj->getPaymentRequestDetail($prId);
-        $this->loadSiteLayout($this->data['view'].'payment_request_detail', $this->data);
+        $this->loadSiteLayout($this->data['view'] . 'payment_request_detail', $this->data);
     }
-    
+
     public function expenses() {
         $this->data['expenseList'] = $this->dashboardObj->getExpensesWtihAgentId($this->agentDetail['pk_agent_id']);
-        $this->loadSiteLayout($this->data['view'].'expenses', $this->data);
+        $this->loadSiteLayout($this->data['view'] . 'expenses', $this->data);
     }
+
+    public function uploadPic() {
+        if ($this->input->post('submit')) {
+            $this->validatePic();
+            $config['upload_path'] = $this->uploadPath . 'user/' . $this->agentDetail['pk_agent_id'] . '/';
+            $config['allowed_types'] = 'jpg|png';
+            $config['max_size'] = 1024;
+            $config['file_name'] = $this->agentDetail['pk_agent_id'];
+            $config['overwrite'] = TRUE;
+            $result = $this->uploadFile($config, 'pic');
+
+            if ($result['upload_status']) {
+                $message = str_replace($this->alertMessages['str_replace'], 'Picture upload successful.', $this->alertMessages['success']);
+            } else {
+                $message = str_replace($this->alertMessages['str_replace'], $result['error_message'], $this->alertMessages['warning']);
+            }
+            $this->session->set_flashdata($this->data['flashKey'], $message);
+        }
+        return redirect(base_url('dashboard/profile'));
+    }
+
+    private function validatePic() {
+        return TRUE;
+    }
+
 }

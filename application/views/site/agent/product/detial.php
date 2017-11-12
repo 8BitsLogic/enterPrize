@@ -1,48 +1,34 @@
-<div class="row">
-    <?php
-    echo $this->session->flashdata($flashKey);
-    ?>
-    <div class="col-md-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h3><?php echo $page['title']; ?></h3>
-            </div>
-            <div class="x_content">
-                <div class="row">
-                    <div class="col-md-7">
-                        Load picture gallery here
-                    </div>
-                    <div class="col-md-5">
-                        <h3><?php echo $productDetail['product_title']; ?></h3>
-                        <div class="product_price">
-                          <h1 class="price">Reward Points: <?php echo $productDetail['product_agent_reward']; ?></h1>
-                          <br>
-                        </div>
-                        
-                        <p>
-                            <?php echo $productDetail['product_descp']; ?>
-                        </p>
-                        <?php
-                        if (is_array($leadForm) && $productDetail['prd_unlock']) {
-                        ?>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="x_panel text-center">
-                                    <h3><a href="<?php echo base_url('product/' . $productDetail['pk_product_id'] . '/lead'); ?>">Generate a Lead </a></h3>
-                                </div>
-
+<section class="pad-top-md pad-bottom-md" id="process-step">
+    <div class="container">
+        <div class="row">
+            <?php echo $this->session->flashdata($flashKey); ?>
+            <div class="col-sm-12 col-md-12">
+                <div class="bs-example" data-example-id="default-media">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="product">
+                            <div class="product-left"> <a href="#"> <img src="images/download.svg" alt="..." class="img-responsive center-block" style="width: 200px; height: 200px;"></a> </div>
+                            <div class="product-body">
+                                <h3 class="text-default text-uppercase"><b><?php echo $productDetail['product_title']; ?></b></h3>
+                                <h4 class="badge">REWARD: AED <?php echo $productDetail['product_agent_reward']; ?>
+                                    <?php
+                                    if (is_array($leadForm) && $productDetail['prd_unlock']) {
+                                        ?>
+                                        <a href="<?php echo base_url('product/' . $productDetail['pk_product_id'] . '/lead'); ?>" class="btn btn-primary pull-right">LEAD</a>
+                                        <?php
+                                    }
+                                    ?>
+                                </h4>
+                                <p class="pull-left"><?php echo $productDetail['product_descp']; ?></p>
                             </div>
-                        </div>
-                        <?php
-                        }
-                        ?>
-
+                            <div class="clearfix"></div>
+                        </div>                                    
                     </div>
+                    <?php
+                    $this->load->view($view . 'partials/product_detail_resources');
+                    ?>
                 </div>
             </div>
+
         </div>
     </div>
-</div>
-<?php
-$this->load->view($view . 'partials/product_detail_resources');
-?>
+</section>

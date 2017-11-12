@@ -10,8 +10,12 @@
                             <p><small>Edit<br />Profile</small></p>
                         </div>
                         <div class="process-step">
-                            <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-external-link fa-3x"></i></button>
+                            <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-newspaper-o fa-3x"></i></button>
                             <p><small>Update<br />Password</small></p>
+                        </div>
+                        <div class="process-step">
+                            <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-picture-o fa-3x"></i></button>
+                            <p><small>Profile<br />Picture</small></p>
                         </div>
 
                     </div>
@@ -27,6 +31,9 @@
                     </div>
                     <div id="menu2" class="tab-pane fade">
                         <?php $this->load->view($view.'partials/pass_form'); ?>
+                    </div>
+                    <div id="menu3" class="tab-pane fade">
+                        <?php $this->load->view($view.'partials/pic_form'); ?>
                     </div>
                 </div>
 
