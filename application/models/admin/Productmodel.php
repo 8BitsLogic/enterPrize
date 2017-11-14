@@ -39,8 +39,8 @@ class Productmodel extends Commonmodel {
     }
 
     public function insertProduct($param) {
-        $query = "INSERT INTO tbl_product (product_title, product_descp, product_total_reward, product_agent_reward, product_status, product_create_date)
-            VALUES (:title, :descp, :totalReward, :agentReward, :status, now())";
+        $query = "INSERT INTO tbl_product (product_title, product_descp, product_vendor_email, product_total_reward, product_agent_reward, product_status, product_create_date)
+            VALUES (:title, :descp, :v_email, :totalReward, :agentReward, :status, now())";
         $statement = $this->prepQuery($query);
         $this->bindParamProduct($statement, $param);
         if ($statement->execute()) {
@@ -54,7 +54,7 @@ class Productmodel extends Commonmodel {
     }
 
     public function updateProduct($param) {
-        $query = "UPDATE tbl_product SET product_title = :title, product_descp = :descp, product_total_reward = :totalReward, "
+        $query = "UPDATE tbl_product SET product_title = :title, product_descp = :descp, product_vendor_email = :v_email, product_total_reward = :totalReward, "
                 . "product_agent_reward = :agentReward, product_status = :status WHERE pk_product_id = :id";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $param['id'], PDO::PARAM_INT);
@@ -71,6 +71,7 @@ class Productmodel extends Commonmodel {
     private function bindParamProduct($statement, $param) {
         $statement->bindParam(':title', $param['prd_title'], PDO::PARAM_STR);
         $statement->bindParam(':descp', $param['prd_descp'], PDO::PARAM_STR);
+        $statement->bindParam(':v_email', $param['v_email'], PDO::PARAM_STR);
         $statement->bindParam(':totalReward', $param['prd_total_reward'], PDO::PARAM_STR);
         $statement->bindParam(':agentReward', $param['prd_agent_reward'], PDO::PARAM_STR);
         $statement->bindParam(':status', $param['prd_status'], PDO::PARAM_STR);

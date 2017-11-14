@@ -31,23 +31,27 @@ class Basecontroller extends CI_Controller {
         $this->agentObj = new Agentmodel;
         $this->paymentObj = new Paymentmodel;
         $this->agentSessionKey = 'agent_detail';
-
     }
 
     protected function getAgentDetail() {
         return $this->agentDetail;
     }
-    
-    protected function getAgentAvailableFunds($id){
+
+    protected function getAgentAvailableFunds($id) {
         return $this->paymentObj->getAgentsTotalAvailableFunds($id);
     }
 
     protected function getAgentPic() {
         $readDir = $this->uploadPath . 'user/' . $this->agentDetail['pk_agent_id'];
-        $map = directory_map($readDir);
-        $picDir = is_array($map) ? reset($map) : '';
-        $response = $map ? $this->themeUrl.'/uploads/user/'.$this->agentDetail['pk_agent_id'].'/'.$picDir : $map;
+        $picDir = $this->openDir($readDir);
+        $response = $picDir ? $this->themeUrl . '/uploads/user/' . $this->agentDetail['pk_agent_id'] . '/' . reset($picDir) : $picDir;
         return $response;
+    }
+
+    protected function openDir($path) {
+        $map = directory_map($path);
+        $dir = is_array($map) ? $map : FALSE;
+        return $dir;
     }
 
     public function loadAdminLayout($data, $content_path) {
@@ -198,6 +202,12 @@ class Basecontroller extends CI_Controller {
             $response = FALSE;
         }
         return $response;
+    }
+
+    protected function getProductGallery($id) {
+        $path = $this->uploadPath . '../images/products/' . $id;
+        $dir = $this->openDir($path);
+        return $dir;
     }
 
 }

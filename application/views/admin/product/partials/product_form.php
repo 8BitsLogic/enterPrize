@@ -3,12 +3,13 @@ $idSlug = isset($productDetail['pk_product_id']) ? '/' . $productDetail['pk_prod
 $productDetailSession = $this->session->flashdata['data_product'];
 $prd['title'] = isset($productDetailSession['prd_title']) ? $productDetailSession['prd_title'] : isset($productDetail['product_title']) ? $productDetail['product_title'] : '';
 $prd['descp'] = isset($productDetailSession['prd_descp']) ? $productDetailSession['prd_descp'] : isset($productDetail['product_descp']) ? $productDetail['product_descp'] : '';
+$prd['v_email'] = isset($productDetailSession['v_email']) ? $productDetailSession['v_email'] : isset($productDetail['product_vendor_email']) ? $productDetail['product_vendor_email'] : '';
 $prd['total_reward'] = isset($productDetailSession['prd_total_reward']) ? $productDetailSession['prd_total_reward'] : isset($productDetail['product_total_reward']) ? $productDetail['product_total_reward'] : '';
 $prd['agent_reward'] = isset($productDetailSession['prd_agent_reward']) ? $productDetailSession['prd_agent_reward'] : isset($productDetail['product_agent_reward']) ? $productDetail['product_agent_reward'] : '';
 $prd['status'] = isset($productDetailSession['prd_status']) ? $productDetailSession['prd_status'] : isset($productDetail['product_status']) ? $productDetail['product_status'] : '';
 
 $attributes = array('id' => "product_form", 'data-parsley-validate' => "", 'class' => "form-horizontal form-label-left", 'novalidate' => "");
-echo form_open(base_url('admin/product/save' . $idSlug), $attributes);
+echo form_open_multipart(base_url('admin/product/save' . $idSlug), $attributes);
 ?>
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prd_title">Title <span class="required">*</span>
@@ -25,6 +26,13 @@ echo form_open(base_url('admin/product/save' . $idSlug), $attributes);
     </div>
 </div>
 <div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="v_email">Vendor Email <span class="required">*</span>
+    </label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input id="v_email" name="v_email" required="required" class="form-control col-md-7 col-xs-12" type="email" value="<?php echo $prd['v_email']; ?>">
+    </div>
+</div>
+<div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prd_total_reward">Total Reward <span class="required">*</span>
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -36,6 +44,12 @@ echo form_open(base_url('admin/product/save' . $idSlug), $attributes);
     </label>
     <div class="col-md-6 col-sm-6 col-xs-12">
         <input id="prd_agent_reward" name="prd_agent_reward" required="required" class="form-control col-md-7 col-xs-12" type="number" value="<?php echo $prd['agent_reward']; ?>" >
+    </div>
+</div>
+<div class="form-group">
+    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="prd_img">Image</label>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <input id="prd_img" name="prd_img" class="form-control col-md-7 col-xs-12" type="file" value="" >
     </div>
 </div>
 <div class="form-group">

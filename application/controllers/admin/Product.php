@@ -52,6 +52,7 @@ class Product extends Basecontroller {
         $this->data['productLeads'] = $this->productObj->getLeadsListWithProductId($id);
         $this->data['productTrainings'] = $this->productObj->getProductTrainingListWithProductId($id);
         $this->data['productTests'] = $this->productObj->getProductTestListWithProductId($id);
+        $this->data['productGallery'] = $this->getProductGallery($id);
         return;
     }
 
@@ -70,9 +71,9 @@ class Product extends Basecontroller {
         $this->getAllProductRelationsList($id);
         $fbObj = new Formbuildermodel;
         if (is_null($this->data['productDetail']['fk_form_id'])) {
-            
+
             $this->data['formList'] = $fbObj->getFormList();
-        }else{
+        } else {
             $this->data['productForm'] = $fbObj->getFormDetail($this->data['productDetail']['fk_form_id']);
             $this->data['productFormFields'] = $fbObj->getFormFields($this->data['productDetail']['fk_form_id']);
         }
@@ -119,9 +120,10 @@ class Product extends Basecontroller {
         $config['upload_path'] = $this->uploadPath . '../images/products/' . $id . '/';
         $config['allowed_types'] = 'jpg|png';
         $config['max_size'] = 1024;
+        $config['file_name'] = sha1(explode('.', $_FILES['prd_img']['name'])[0]) . '.' . explode('.', $_FILES['prd_img']['name'])[1];
         $result = $this->uploadFile($config, 'prd_img');
         if ($result['upload_status']) {
-            
+            $this->session->set_flashdata($this->data['flashKey'], str_replace($this->alertMessages['str_replace'], 'Image uploaded.', $this->alertMessages['warning']));
         } else {
             $this->session->set_flashdata($this->data['flashKey'], str_replace($this->alertMessages['str_replace'], $result['error_message'], $this->alertMessages['warning']));
             return redirect(base_url('admin/product/edit/' . $id));
@@ -176,7 +178,7 @@ class Product extends Basecontroller {
                 break;
         }
         $message = isset($message) ? $message : $result ? str_replace($this->alertMessages['str_replace'], $property . ' added', $this->alertMessages['success']) :
-                        str_replace($this->alertMessages['str_replace'], $result, $this->alertMessages['warning']);
+                str_replace($this->alertMessages['str_replace'], $result, $this->alertMessages['warning']);
         $this->session->set_flashdata($this->data['flashKey'], $message);
         return;
     }
@@ -194,7 +196,7 @@ class Product extends Basecontroller {
                 break;
         }
         $message = isset($message) ? $message : $result ? str_replace($this->alertMessages['str_replace'], $property . ' unlinked', $this->alertMessages['success']) :
-                        str_replace($this->alertMessages['str_replace'], $result, $this->alertMessages['warning']);
+                str_replace($this->alertMessages['str_replace'], $result, $this->alertMessages['warning']);
         $this->session->set_flashdata($this->data['flashKey'], $message);
         return;
     }
@@ -215,4 +217,12 @@ class Product extends Basecontroller {
         return redirect(base_url('admin/product/edit/' . $prdId));
     }
 
+    public function removePhoto($id, $file) {
+//        echo $this->uploadPath.'../images/products/'.$id.'/'.$file;exit;
+        $message = !unlink($this->uploadPath.'../images/products/'.$id.'/'.$file) ? 
+                str_replace($this->alertMessages['str_replace'], 'Could not remove file', $this->alertMessages['warning']):
+                str_replace($this->alertMessages['str_replace'], 'File removed', $this->alertMessages['success']);
+        $this->session->set_flashdata($this->data['flashKey'], $message);
+        return redirect(base_url('admin/product/edit/' . $id));
+    }
 }

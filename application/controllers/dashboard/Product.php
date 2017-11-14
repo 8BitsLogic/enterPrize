@@ -52,6 +52,7 @@ class Product extends Basecontroller {
     }
 
     private function getProductDetails($id) {
+        $this->data['productGallery'] = $this->getProductGallery($id);
         $this->data['trainingList'] = $this->aPrdObj->getProductTrainingListWithProductId($id, $this->status);
         $this->data['trainingView'] = 'site/agent/training/';
         $this->data['testList'] = $this->prdObj->getProductTestListWithProductId($id, $this->agentDetail['pk_agent_id'], $this->status);

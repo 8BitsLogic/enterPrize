@@ -6,7 +6,17 @@
                 <div class="bs-example" data-example-id="default-media">
                     <div class="col-sm-12 col-md-12">
                         <div class="product">
-                            <div class="product-left"> <a href="#"> <img src="images/download.svg" alt="..." class="img-responsive center-block" style="width: 200px; height: 200px;"></a> </div>
+                            <?php
+                            if ($productGallery) {
+                                foreach ($productGallery as $photo) {
+                                    ?>
+                                    <div class="product-left">
+                                        <img src="<?php echo $this->themeUrl . '/images/products/' . $productDetail['pk_product_id'] . '/' . $photo; ?>" alt="..." class="img-responsive center-block" style="width: 200px; height: 200px;">
+                                    </div>
+                                    <?php
+                                }
+                            }
+                            ?>
                             <div class="product-body">
                                 <h3 class="text-default text-uppercase"><b><?php echo $productDetail['product_title']; ?></b></h3>
                                 <h4 class="badge">REWARD: AED <?php echo $productDetail['product_agent_reward']; ?>
