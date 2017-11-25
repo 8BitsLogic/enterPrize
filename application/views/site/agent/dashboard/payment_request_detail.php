@@ -1,16 +1,17 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h3>Payment Request# <?php echo $prDetail['pk_payment_request_id']; ?></h3>
-            </div>
-            <div class="x_content">
-                Amount: <?php echo $prDetail['payment_request_amount']; ?><br>
-                Date: <?php echo $prDetail['payment_request_create_date']; ?><br>
-                Status: <?php echo $prDetail['payment_request_status']; ?><br>
-                Notes: <?php echo $prDetail['payment_request_customer_notes']; ?><br>
+<?php $this->load->view($view . '../partials/page_title'); ?>
+<section class="pad-top-md pad-bottom-md">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2 class="text-primary">Payment Request# <?php echo $prDetail['pk_payment_request_id']; ?></h2>
+                <hr>
+                <div>
+                    <p class="text-primary">Amount: <span class="text-default"><?php echo 'AED '.number_format($prDetail['payment_request_amount'], '2', '.', ',') ?></span></p> 
+                    <p class="text-primary">Date: <span class="text-default"><?php echo date_format(date_create($prDetail['payment_request_create_date']), 'd-m-Y') ?></span></p>
+                    <p class="text-primary">Status: <span class="text-default"><?php echo $prDetail['payment_request_status']; ?></span></p> 
+                    <p class="text-primary">Notes: <span class="text-default"><?php echo $prDetail['payment_request_customer_notes']; ?></span></p> 
+                </div>
             </div>
         </div>
-        
     </div>
-</div>
+</section>

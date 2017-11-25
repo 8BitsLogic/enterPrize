@@ -1,3 +1,13 @@
+<div class="main-banner text-center" style="background-color: grey ">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1><?php echo $page['title']; ?></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
 <section class="pad-top-md pad-bottom-md" id="process-step">
     <div class="container">
         <div class="row">
@@ -6,9 +16,6 @@
             ?>
             <div class="col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h3><?php echo $page['title']; ?></h3>
-                    </div>
                     <div class="x_content">
                         <?php
                         if (!$trainingList) {

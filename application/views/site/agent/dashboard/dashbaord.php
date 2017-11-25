@@ -15,29 +15,38 @@
     </div>
 </div>-->
 
-<!-- start of main-banner -->
-<div class="main-banner bg-img-full section text-center" style="background-image: url(<?php echo $slides['0']['slide_link']; ?>);">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="heading text-uppercase">Introducing<br /> <span class="main-color">byob</span><span style="color: darkgrey;">LTD</span></h1>
-                <span class="divider main-bg-color"></span>
-                <p style="color: darkgray;">learn, Earn , Grow</p>
-                <div id="imaginary_container">
-                    <div class="input-group stylish-input-group">
-                        <input type="text" class="form-control" placeholder="Search Here">
-                        <span class="input-group-addon">
-                            <button type="submit">
-                                <span class="fa fa-search"></span>
-                            </button>
-                        </span>
+<ul class="als-wrapper">
+    <?php
+    foreach ($slides as $slide) {
+        ?>
+        <li>
+            <div class="main-banner bg-img-full section text-center" style="background-image: url(<?php echo $slide['slide_link']; ?>);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1 class="heading text-uppercase">Introducing<br /> <span class="main-color">byob</span> pro.</h1>
+                            <span class="divider main-bg-color"></span>
+                            <p>learn, Earn , Grow</p>
+                            <div id="imaginary_container">
+                                <div class="input-group stylish-input-group">
+                                    <!--<input type="text" class="form-control" placeholder="Search Here">-->
+<!--                                    <span class="input-group-addon">
+                                        <button type="submit">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>-->
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-
             </div>
-        </div>
-    </div>
-</div>
+        </li>
+        <?php
+    }
+    ?>
+</ul>
 <!-- end of main-banner -->
 
 <section class="pad-top-lg">
@@ -45,7 +54,7 @@
         <div class="row">
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <a href="<?php echo base_url('dashboard/ewallet') ?>">
+                <a href="<?php echo base_url('revenue') ?>">
                     <div class="steps-box text-center mar-bottom-md pad-top-xs">
                         <div class="icon-box main-color">
                             <img src="<?php echo $this->themeUrl; ?>/images/revenue.png" alt="img" class="img-responsive">
@@ -63,7 +72,7 @@
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <a href="<?php echo base_url('product') ?>">
+                <a href="<?php echo base_url('opportunity') ?>">
                     <div class="steps-box text-center mar-bottom-md pad-top-xs">
                         <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/opportunity.png" alt="img" class="img-responsive"></div>
 
@@ -128,7 +137,7 @@
             </div>
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <a href="">
+                <a href="<?php echo base_url('dashboard/ewallet') ?>">
                     <div class="steps-box text-center mar-bottom-md pad-top-xs">
                         <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/expense.png" alt="img" class="img-responsive"></div>
 
@@ -176,4 +185,3 @@
     </div>
 </div>
 <!-- end of test-section -->
-

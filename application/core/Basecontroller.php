@@ -73,6 +73,14 @@ class Basecontroller extends CI_Controller {
         $data['content'] = $this->load->view($content_path, $data, TRUE);
         $this->load->view($template . 'template', $data);
     }
+    
+    public function loadSiteBasicHeaderLayout($content_path, $data = array()) {
+        $template = 'site/template/';
+        $data['header'] = $this->load->view($template . 'header_basic', $data, TRUE);
+        $data['footer'] = $this->load->view($template . 'footer', $data, TRUE);
+        $data['content'] = $this->load->view($content_path, $data, TRUE);
+        $this->load->view($template . 'template', $data);
+    }
 
     public function loadLayoutnoHF($content_path, $data = array()) {
         $template = 'site/template/';
@@ -209,5 +217,13 @@ class Basecontroller extends CI_Controller {
         $dir = $this->openDir($path);
         return $dir;
     }
+    
+    protected function findFileInDir($dir, $file) {
+        $dirContent = is_dir($dir) ? array_diff(scandir($dir), array('..', '.')) : FALSE;
+        return in_array($file, $dirContent);
+    }
 
+    public function match_date($date) {
+        return (bool) preg_match("/^([0-9]|0[1-9]|[12][0-9]|3[01])[\/]([1-12]|0[1-9]|1[012])[\/](19|20)\d\d$/", $date);
+    }
 }

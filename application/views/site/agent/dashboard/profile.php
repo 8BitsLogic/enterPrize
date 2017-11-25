@@ -1,3 +1,4 @@
+<?php $this->load->view($view . '../partials/page_title'); ?>
 <section class="pad-top-md pad-bottom-md" id="process-step">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <div class="container">
@@ -25,15 +26,18 @@
                         <?php
                         echo $this->session->flashdata($flashKey);
                         ?>
+                        <div class="error">
+                            <?php echo validation_errors(); ?>
+                        </div>
                     </div>
                     <div id="menu1" class="tab-pane fade active in">
-                        <?php $this->load->view($view.'partials/profile_form'); ?>
+                        <?php $this->load->view($view . 'partials/profile_form'); ?>
                     </div>
                     <div id="menu2" class="tab-pane fade">
-                        <?php $this->load->view($view.'partials/pass_form'); ?>
+                        <?php $this->load->view($view . 'partials/pass_form'); ?>
                     </div>
                     <div id="menu3" class="tab-pane fade">
-                        <?php $this->load->view($view.'partials/pic_form'); ?>
+                        <?php $this->load->view($view . 'partials/pic_form'); ?>
                     </div>
                 </div>
 

@@ -39,7 +39,7 @@ class Login extends Basecontroller{
     public function tryLogin() {
         $redirectUrl = 'login';
         if($this->input->post('submit')){
-            $this->validateLoginPost();
+            $this->validateLoginPost()? '' : $this->index();
             $userLogin = $this->loginObj->tryUserLogin($this->input->post());
             if(is_array($userLogin) && $userLogin['agent_status'] == 'active'){
                 $this->session->set_userdata($this->agentSessionKey, $userLogin);
@@ -61,7 +61,9 @@ class Login extends Basecontroller{
     }
     
     private function validateLoginPost(){
-        return TRUE;
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|email');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        return $this->form_validation->run() ? TRUE : FALSE;
     }
     
     public function logout() {

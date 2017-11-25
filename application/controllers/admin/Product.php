@@ -93,7 +93,7 @@ class Product extends Basecontroller {
     private function saveNewProduct($param) {
         $result = $this->productObj->insertProduct($param);
         if ($result['query_status']) {
-            isset($_FILES['prd_img']) ? $this->uploadProductPhoto($result['id']) : '';
+            empty($_FILES['prd_img']['name']) ? '' : $this->uploadProductPhoto($result['id']);
             $message = $this->session->flashdata($this->data['flashKey']) .
                     str_replace($this->alertMessages['str_replace'], 'New product added', $this->alertMessages['success']);
             $this->session->set_flashdata('message_prduct', $message);
@@ -107,7 +107,7 @@ class Product extends Basecontroller {
     }
 
     private function updateProduct($param) {
-        isset($_FILES['prd_img']) ? $this->uploadProductPhoto($param['id']) : '';
+        empty($_FILES['prd_img']['name']) ? '' : $this->uploadProductPhoto($param['id']);
         $result = $this->productObj->updateProduct($param);
         $message .= $this->session->flashdata($this->data['flashKey']) . $result['query_status'] ?
                 str_replace($this->alertMessages['str_replace'], 'Updated Successful', $this->alertMessages['success']) :
@@ -219,10 +219,23 @@ class Product extends Basecontroller {
 
     public function removePhoto($id, $file) {
 //        echo $this->uploadPath.'../images/products/'.$id.'/'.$file;exit;
-        $message = !unlink($this->uploadPath.'../images/products/'.$id.'/'.$file) ? 
-                str_replace($this->alertMessages['str_replace'], 'Could not remove file', $this->alertMessages['warning']):
+        $message = !unlink($this->uploadPath . '../images/products/' . $id . '/' . $file) ?
+                str_replace($this->alertMessages['str_replace'], 'Could not remove file', $this->alertMessages['warning']) :
                 str_replace($this->alertMessages['str_replace'], 'File removed', $this->alertMessages['success']);
         $this->session->set_flashdata($this->data['flashKey'], $message);
         return redirect(base_url('admin/product/edit/' . $id));
     }
+
+    public function defaultPhoto($id, $file) {
+        $dir = $this->uploadPath . '../images/products/' . $id . '/';
+        $searchResult = $this->findFileInDir($dir, $file);
+        $result = $searchResult ? $this->productObj->updateProductDefaultImage($id, $file) : FALSE;
+        $message = $result ? $result['query_status'] ?
+                str_replace($this->alertMessages['str_replace'], 'Default photo set', $this->alertMessages['success']) :
+                str_replace($this->alertMessages['str_replace'], $result['error_message'], $this->alertMessages['warning']) :
+                str_replace($this->alertMessages['str_replace'], 'File not found.', $this->alertMessages['warning']);
+        $this->session->set_flashdata($this->data['flashKey'], $message);
+        return redirect(base_url('admin/product/edit/' . $id));
+    }
+
 }

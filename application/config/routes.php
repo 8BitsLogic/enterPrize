@@ -129,6 +129,7 @@ $route['admin/product/status/(:num)'] = 'admin/product/toggleStatusProduct/$1';
 $route['admin/product/(:num)/add_form/(:num)'] = 'admin/product/addProductForm/$1/$2';
 $route['admin/product/(:num)/remove_form'] = 'admin/product/removeProductForm/$1';
 $route['admin/product/(:num)/delete/(:any)'] = 'admin/product/removePhoto/$1/$2';
+$route['admin/product/(:num)/default_image/(:any)'] = 'admin/product/defaultPhoto/$1/$2';
 
 // Product properties
 //$route['admin/product/productid/acttion/propertyname/propertyid'] = 'admin/product/propertyAction/$1/$2/$3/$4';
@@ -256,6 +257,8 @@ $route['test/take_test_submit/(:num)'] = 'dashboard/test/testAttempt/$1';
 
 // Agent Product
 $route['product'] = 'dashboard/product/index';
+$route['revenue'] = 'dashboard/product/index/1';
+$route['opportunity'] = 'dashboard/product/index/0';
 $route['product/detail/(:num)'] = 'dashboard/product/detail/$1';
 $route['product/(:num)/lead'] = 'dashboard/product/loadLeadForm/$1';
 $route['product/(:num)/lead_capture'] = 'dashboard/product/leadPost/$1';

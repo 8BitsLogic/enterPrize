@@ -1225,9 +1225,11 @@ body {
     }
 }
 
-
-#header.sticky ul.nav-list.list-inline.text-center {
+#header ul.nav-list.list-inline.text-center {
     display: none;
+}
+#header.sticky ul.nav-list.list-inline.text-center {
+    display: block;
 }
 
 .tab-content > .tab-pane {

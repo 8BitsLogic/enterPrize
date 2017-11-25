@@ -1,3 +1,4 @@
+<?php $this->load->view($view . '../partials/page_title'); ?>
 <section class="pad-top-md pad-bottom-md" id="process-step">
     <div class="container">
         <div class="row">
@@ -8,8 +9,11 @@
                     ?>
                     <div class="col-md-12">
                         <h3 class="text-primary">Request Payment</h3>
+                        <hr>
                         <div class="col-md-12 col-xs-12 col-md-offset-3">
-
+                            <div class="error">
+                                <?php echo validation_errors(); ?>
+                            </div>
 
                             <?php
                             $attributes = array('class' => "form-horizontal form-label-left", 'id' => "payment_request_form");
@@ -48,18 +52,22 @@
                                 <th>Description</th>
                                 <th>Amount In</th>
                                 <th>Amount Out</th>
+                                <th>Balance</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
                             if (is_array($transactions)) {
+                                $calAmount = 0;
                                 foreach ($transactions as $inKey) {
                                     ?>
                                     <tr>
-                                        <td><?php echo $inKey['transaction_create_date']; ?></td>
+                                        <td><?php echo date_format(date_create($inKey['transaction_create_date']), 'd-m-Y h:m'); ?></td>
                                         <td><?php echo $inKey['transaction_descp']; ?></td>
-                                        <td><?php echo $inKey['transaction_type'] == 'deposit' ? $inKey['transaction_amount'] : ''; ?></td>
-                                        <td><?php echo $inKey['transaction_type'] == 'withdraw' ? $inKey['transaction_amount'] : ''; ?></td>
+                                        <td><?php echo $inKey['transaction_type'] == 'deposit' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
+                                        <td><?php echo $inKey['transaction_type'] == 'withdraw' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
+                                        <?php $calAmount = $calAmount + $inKey['transaction_amount']; ?>
+                                        <td><?php echo number_format($calAmount, 2, '.', ','); ?></td>
                                     </tr>
                                     <?php
                                 }
@@ -102,7 +110,7 @@
                                                 <?php echo $prKey['pk_payment_request_id']; ?>
                                             </a>
                                         </td>
-                                        <td><?php echo $prKey['create_date']; ?></td>
+                                        <td><?php echo date_format(date_create($prKey['create_date']), 'd-m-Y'); ?></td>
                                         <td><?php echo $prKey['payment_request_amount']; ?></td>
                                     </tr>
                                     <?php

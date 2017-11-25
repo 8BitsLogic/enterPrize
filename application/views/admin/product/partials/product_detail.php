@@ -29,17 +29,22 @@
                                 foreach ($productGallery as $photo) {
                                     ?>
                                     <div class="col-md-55">
-                                        <div class="thumbnail">
-                                            <div class="image view view-first">
-                                                <img style="width: 100%; display: block;" src="<?php echo $this->themeUrl . '/images/products/' . $productDetail['pk_product_id'] . '/' . $photo; ?>" alt="image">
-                                                <div class="mask">
-                                                    <!--<p>Your Text</p>-->
-                                                    <div class="tools tools-bottom">
-                                                        <a href="<?php echo base_url('admin/product/' . $productDetail['pk_product_id'] . '/delete/' . $photo) ?>"><i class="fa fa-times"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>                 
+                                        <!--<div class="thumbnail">-->
+                                        <div class="image text-center">
+                                            <img style="width: 100%; display: block;" src="<?php echo $this->themeUrl . '/images/products/' . $productDetail['pk_product_id'] . '/' . $photo; ?>" alt="image">
+                                            <!--<div class="mask">-->
+                                                <!--<p>Your Text</p>-->
+                                            <!--<div class="tools tools-bottom">-->
+                                            <a href="<?php echo base_url('admin/product/' . $productDetail['pk_product_id'] . '/delete/' . $photo) ?>"><i class="fa fa-2x fa-times"></i></a>
+                                            <?php
+                                            if ($productDetail['product_image'] != $photo) {
+                                                ?>
+                                                <a href="<?php echo base_url('admin/product/' . $productDetail['pk_product_id'] . '/default_image/' . $photo) ?>"><i class="fa fa-2x fa-check-square-o"></i></a>
+                                            <?php } ?>
+                                            <!--</div>-->
+                                            <!--</div>-->
                                         </div>
+                                        <!--</div>-->
                                     </div>
                                     <?php
                                 }

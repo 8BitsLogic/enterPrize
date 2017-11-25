@@ -26,7 +26,7 @@ class SiteProductmodel extends Commonmodel {
         $statement->execute();
     }
 
-    public function getAllProducts($status = '%', $prId = '%') {
+    public function getAllProducts($status = '%', $unlock='%', $prId = '%') {
         $query = "SELECT *, CASE WHEN ((temp.clear_test/temp.test_count) = 1) THEN TRUE ELSE FALSE END AS prd_unlock
             FROM tbl_product AS p
             LEFT JOIN (SELECT rpt.fk_product_id, COUNT(rpt.fk_test_id) AS test_count,
@@ -34,10 +34,12 @@ class SiteProductmodel extends Commonmodel {
             FROM tbl_r_product_test AS rpt
             WHERE 1
             GROUP BY rpt.fk_product_id) AS temp ON p.pk_product_id = temp.fk_product_id
-            WHERE p.product_status = :status AND p.pk_product_id LIKE :id";
+            WHERE p.product_status LIKE :status AND p.pk_product_id LIKE :id
+            HAVING prd_unlock LIKE :unlock";
         $statement = $this->prepQuery($query);
         $statement->bindParam(':status', $status, PDO::PARAM_STR);
         $statement->bindParam(':id', $prId, PDO::PARAM_INT);
+        $statement->bindParam(':unlock', $unlock, PDO::PARAM_INT);
         $statement->execute();
         return $statement->rowCount() > 0 ? $statement->fetchAll(PDO::FETCH_ASSOC) : FALSE;
     }

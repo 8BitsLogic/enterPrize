@@ -20,7 +20,8 @@ class Signup extends Basecontroller {
     public function __construct() {
         parent::__construct();
         $this->load->model(array('Signupmodel', 'admin/Agentmodel'));
-//        $this->load->library('../controllers/Emails');
+        $this->load->helper(array('form'));
+        $this->load->library('form_validation');
 
         $this->data = array(
             'page' => array('title' => 'Agent Signup'),
@@ -30,6 +31,7 @@ class Signup extends Basecontroller {
 
         $this->signupObj = new Signupmodel;
         $this->agentObj = new Agentmodel;
+        
     }
 
     public function index($activationKey = NULL) {
@@ -45,7 +47,7 @@ class Signup extends Basecontroller {
             $view = 'form_agent_signup';
             $this->data['enumValues'] = $this->getFieldEnumValues();
         }
-        $this->loadSiteLayout($this->data['view'] . $view, $this->data);
+        $this->loadSiteBasicHeaderLayout($this->data['view'] . $view, $this->data);
     }
 
     private function getFieldEnumValues() {
@@ -63,7 +65,7 @@ class Signup extends Basecontroller {
             $this->loadSiteLayout($this->data['view'] . $view, $this->data);
         }
         if ($this->input->post('submit')) {
-            $this->validateSignupPost();
+            $this->validateSignupPost() ? '' : $this->index($activationKey);
             $agentArr = array(
                 'activationKey' => $activationKey,
                 'fname' => $this->input->post('fname'),
@@ -107,9 +109,23 @@ class Signup extends Basecontroller {
     }
 
     private function validateSignupPost() {
-        return TRUE;
+        $enumVals = $this->getFieldEnumValues();
+        $this->form_validation->set_rules('fname', 'First Name', 'trim|required|min_length[3]|max_length[50]|alpha');
+        $this->form_validation->set_rules('mname', 'Middle Name', 'trim|alpha|min_length[3]|max_length[50]');
+        $this->form_validation->set_rules('lname', 'Last Name', 'trim|required|min_length[3]|max_length[50]|alpha');
+        $this->form_validation->set_rules('nationality','Nationality','trim|required|min_length[3]|max_length[50]|alpha');
+        $this->form_validation->set_rules('dob','Date of Birth','trim|required|callback_match_date',array('match_date' => '%s should in be in "DD/MM/YYYY" format'));
+        $this->form_validation->set_rules('gender','Gender','trim|required|in_list['. implode(',', $enumVals['gender']).']');
+        $this->form_validation->set_rules('phone','Phone number','trim|required|numeric|min_length[10]|max_length[13]');
+        $this->form_validation->set_rules('vstatus','Visa Status','trim|required|in_list['. implode(',', $enumVals['visa_status']).']');
+        $this->form_validation->set_rules('pas_number','Emirates ID/ Passport Number','trim|required|alpha_numeric');
+        $this->form_validation->set_rules('education','Education','trim|in_list['. implode(',', $enumVals['education']).']');
+        $this->form_validation->set_rules('city_current','Current City','trim|required|alpha');
+        $this->form_validation->set_rules('city_area','City Area','trim|required|alpha');
+        $this->form_validation->set_rules('city_work','Work City','trim|alpha');
+        return $this->form_validation->run() ? TRUE : FALSE;
     }
-
+    
     private function sendSignupEmail($param) {
         $email = array(
             'to' => $param['email'],

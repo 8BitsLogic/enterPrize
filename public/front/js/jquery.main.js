@@ -1,4 +1,5 @@
-$(document).ready(function() {
+$(document).ready(function() 
+{
 
 	"use strict";
 
@@ -62,7 +63,8 @@ $(document).ready(function() {
 		jQuery('#nav .smooth').on( "click", function(){
 			if (jQuery("body").hasClass("nav-active")) {
 				setTimeout(function() { 
-				jQuery("body").removeClass("nav-active");}, 800);
+				jQuery("body").removeClass("nav-active");
+        }, 800);
 			}
 		});
 	}
@@ -233,8 +235,9 @@ $(document).ready(function() {
 		"use strict";
 
 		jQuery("#bgvid").vegas({
-		  slides: [
-		    {   src: 'http://placehold.it/1920x1080',
+		  slides: [		    
+      {           
+      src: 'http://placehold.it/1920x1080',
 		        video: {
 		            src: [
 		                'video/html.mov',

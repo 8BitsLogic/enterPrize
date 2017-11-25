@@ -1,9 +1,8 @@
 <div class="row">
+    <h2 class="text-primary"><?php echo $testDetail['test_title']; ?></h2>
+    <hr>
     <div class="col-md-8">
         <div class="x_panel">
-            <div class="x_title">
-                <h4><?php echo $testDetail['test_title']; ?></h4>
-            </div>
             <div class="x_content">
                 <?php echo $testDetail['test_descp']; ?>
             </div>
@@ -12,7 +11,8 @@
     <div class="col-md-4">
         <div class="x_panel">
             <div class="x_title">
-                <h4>This test is step towards unlocking below products.</h4>
+                <h4 class="text-primary">This test is step towards unlocking below products.</h4>
+                <hr>
             </div>
             <div class="x_content">
                 <?php
@@ -38,3 +38,4 @@
         </div>
     </div>
 </div>
+<div class="col-xs-12"></div>

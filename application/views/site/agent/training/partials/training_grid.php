@@ -2,8 +2,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th width="25%">Title</th>
-                <th width="70%">Description</th>
+                <th width="25%" class="text-primary">Title</th>
+                <th width="70%" class="text-primary">Description</th>
                 <th></th>
             </tr>
         </thead>

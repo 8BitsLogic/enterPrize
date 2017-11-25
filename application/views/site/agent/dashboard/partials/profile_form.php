@@ -32,33 +32,34 @@ $selected = 'selected=""';
     <div class="row">
         <div class="col-sm-4 form-group">
             <label class="control-label" for="fame">First Name <span class="required">*</span></label>
-            <input id="fname" required="required" class="form-control" name="fname" type="text" value="<?php echo $detail['fname']; ?>" >
+            <input id="fname" required="required" class="form-control" name="fname" type="text" value="<?php echo set_value('fname') ? set_value('fname') : $detail['fname']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="mname"> Middle Name</label>
-            <input id="mname" class="form-control" name="mname" type="text" value="<?php echo $detail['mname']; ?>" >
+            <input id="mname" class="form-control" name="mname" type="text" value="<?php echo set_value('mname') ? set_value('mname') : $detail['mname']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="lname">Last Name <span class="required">*</span></label>
-            <input id="lname" required="required" class="form-control" name="lname" type="text" value="<?php echo $detail['lname']; ?>" >
+            <input id="lname" required="required" class="form-control" name="lname" type="text" value="<?php echo set_value('lname') ? set_value('lname') : $detail['lname']; ?>" >
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4 form-group">
             <label class="control-label" for="nationality">Nationality <span class="required">*</span></label>
-            <input id="nationality" required="required" class="form-control" name="nationality" type="text" value="<?php echo $detail['nationality']; ?>" >
+            <input id="nationality" required="required" class="form-control" name="nationality" type="text" value="<?php echo set_value('nationality') ? set_value('nationality') : $detail['nationality']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="dob">Date Of Birth <span class="required">*</span></label>
             <div class="form-group" id="calender-outer">
                 <div class="input-group" id="calender">
-                    <input id="dob" class="date-picker form-control col-md-7 col-xs-12" required="required" name="dob" type="text" value="<?php echo $detail['dob']; ?>" >
+                    <input id="dob" class="date-picker form-control col-md-7 col-xs-12" required="required" name="dob" type="text" value="<?php echo set_value('dob') ? set_value('dob') : $detail['dob']; ?>" >
                 </div>
             </div>
         </div>
         <div class="col-sm-4 form-group">
             <label>Gender</label><span class="required">*</span>
             <div class="col-xs-12">
+                <?php $detail['gender'] = set_value('gender') ? set_value('gender') : $detail['gender']; ?>
                 <div class="radio-inline">
                     <label><input name="gender" <?php echo $detail['gender'] == 'male' ? 'checked=""' : ''; ?> value="male" data-parsley-multiple="gender" type="radio"> &nbsp; Male &nbsp;</label>
                 </div>
@@ -71,7 +72,7 @@ $selected = 'selected=""';
     <div class="row">
         <div class="col-sm-4 form-group">
             <label class="control-label" for="phone">Mobile # <span class="required">*</span></label>
-            <input id="phone" required="required" class="form-control" name="phone" type="text" value="<?php echo $detail['phone']; ?>" >
+            <input id="phone" required="required" class="form-control" name="phone" type="text" value="<?php echo set_value('phone') ? set_value('phone') : $detail['phone']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="email">Email</label>
@@ -94,6 +95,7 @@ $selected = 'selected=""';
             <select name="education" class="form-control">
                 <option selected="" disabled="">Choose Education Level</option>
                 <?php
+                $detail['education'] = set_value('education') ? set_value('education') : $detail['education'];
                 foreach ($enumValues['education'] as $key => $val) {
                     ?>
                     <option <?php
@@ -110,15 +112,15 @@ $selected = 'selected=""';
     <div class="row">
         <div class="col-sm-4 form-group">
             <label class="control-label" for="city_current">Current City <span class="required">*</span></label>
-            <input id="city_current" required="required" class="form-control" name="city_current" type="text" value="<?php echo $detail['city_current']; ?>" >
+            <input id="city_current" required="required" class="form-control" name="city_current" type="text" value="<?php echo set_value('city_current') ? set_value('city_current') : $detail['city_current']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="city_area">City Area <span class="required">*</span></label>
-            <input id="city_area" required="required" class="form-control" name="city_area" type="text" value="<?php echo $detail['city_area']; ?>" >
+            <input id="city_area" required="required" class="form-control" name="city_area" type="text" value="<?php echo set_value('city_area') ? set_value('city_area') : $detail['city_area']; ?>" >
         </div>
         <div class="col-sm-4 form-group">
             <label class="control-label" for="city_work">Work City</label>
-            <input id="city_work" class="form-control" name="city_work" type="text" value="<?php echo $detail['city_work']; ?>" >
+            <input id="city_work" class="form-control" name="city_work" type="text" value="<?php echo set_value('city_work') ? set_value('city_work') : $detail['city_work']; ?>" >
         </div>
     </div>
 

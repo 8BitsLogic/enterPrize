@@ -1,7 +1,7 @@
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
-            <tr>
+            <tr class="text-primary">
                 <th width="25%">Title</th>
                 <th width="70%">Description</th>
                 <th></th>

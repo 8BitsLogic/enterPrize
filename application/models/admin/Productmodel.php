@@ -176,6 +176,21 @@ class Productmodel extends Commonmodel {
         return $response;
     }
     
+    public function updateProductDefaultImage($prdId, $image) {
+        $query = "UPDATE tbl_product  SET  product_image = :image WHERE pk_product_id = :pId";
+        $statement = $this->prepQuery($query);
+        $statement->bindParam(':pId', $prdId,  PDO::PARAM_INT);
+        $statement->bindParam(':image', $image,  PDO::PARAM_INT);
+        
+        if($statement->execute()){
+            $response['query_status'] = TRUE;
+        }else{
+            $response['query_status'] = FALSE;
+            $response['message'] = $this->errorInfo($statement);
+        }        
+        return $response;
+    }
+    
     public function removeProductLeadForm($prdId) {
         $query = "UPDATE tbl_product  SET  fk_form_id = NULL WHERE pk_product_id = :pId";
         $statement = $this->prepQuery($query);

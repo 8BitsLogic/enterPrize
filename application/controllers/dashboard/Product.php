@@ -39,13 +39,13 @@ class Product extends Basecontroller {
         $this->aleadObj = new Leadmodel;
     }
 
-    public function index() {
-        $this->data['productList'] = $this->prdObj->getAllProducts($this->status, '%');
+    public function index($unlock = '%') {
+        $this->data['productList'] = $this->prdObj->getAllProducts($this->status, $unlock, '%');
         $this->loadSiteLayout($this->data['view'] . 'all_product', $this->data);
     }
 
     public function detail($id) {
-        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, $id)[0];
+        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '%', $id)[0];
         !$this->data['productDetail'] ? redirect(base_url('product')) : '';
         $this->getProductDetails($id);
         $this->loadSiteLayout($this->data['view'] . 'detial', $this->data);
@@ -63,7 +63,7 @@ class Product extends Basecontroller {
     }
 
     public function loadLeadForm($prId) {
-        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, $prId)[0];
+        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '1',$prId)[0];
         $this->data['leadForm'] = is_array($this->data['productDetail']) && $this->data['productDetail']['prd_unlock'] ?
                 $this->prdObj->getProductLeadForm($prId) : redirect(base_url('product'));
         $this->loadSiteLayout($this->data['leadView'] . 'leadForm', $this->data);
@@ -159,6 +159,7 @@ class Product extends Basecontroller {
     }
 
     public function detailLead($leadId) {
+        $this->data['page'] = array('title' => 'Lead Detail');
         $this->data['leadDetail'] = $this->aleadObj->getLeadDetail($leadId);
         if (!$this->data['leadDetail']) {
             $message = str_replace($this->alertMessages['str_replace'], 'Lead data not found', $this->alertMessages['warning']);
