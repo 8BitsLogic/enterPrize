@@ -30,7 +30,7 @@
                             <div id="imaginary_container">
                                 <div class="input-group stylish-input-group">
                                     <!--<input type="text" class="form-control" placeholder="Search Here">-->
-<!--                                    <span class="input-group-addon">
+    <!--                                    <span class="input-group-addon">
                                         <button type="submit">
                                             <span class="fa fa-search"></span>
                                         </button>
@@ -157,31 +157,32 @@
 </section>
 
 <!-- start of test-section -->
-<div class="bg-img-full section test-section" data-scroll-index="3" style="background-image: url(<?php echo $this->themeUrl; ?>/images/img02.jpg);" >
-    <div class="container">
-        <div class="row">
-            <div class="pad-top-xs"></div>
-            <div class="col-xs-12 col-sm-4 pad-bottom-xs">
-                <img src="<?php echo $this->themeUrl; ?>/images/img04.jpg" alt="img" class="img-responsive center-block main-border-color img">
-                <p class="text-center"><i>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"</i></p>
-                <p style="padding: 0 25px;"><span class="text-left">Oct 10, 2017</span><a href="#" class="pull-right"><u>Read More</u></a></p>
+<?php
+if ($postList) {
+    ?>
+    <div class="bg-img-full section test-section" data-scroll-index="3" style="background-image: url(<?php echo $this->themeUrl; ?>/images/img02.jpg);" >
+        <div class="container">
+            <div class="row">
+                <div class="pad-top-xs"></div>
+                <?php
+                foreach ($postList as $keyP => $valP) {
+                    ?>
+                    <div class="col-xs-12 col-sm-4 pad-bottom-xs">
+                        <img src="<?php echo $agentPic; ?>" alt="img" class="img-responsive center-block main-border-color img">
+                        <p class="text-center"><i><?php echo substr($valP['post_title'], 0, 90)?></i></p>
+                        <p style="padding: 0 25px;">
+                            <span class="text-left"><?php echo date_format(date_create($valP['post_create_date']), 'M d, Y'); ?></span>
+                            <a href="<?php echo base_url('community/post/'.$valP['pk_post_id']); ?>" class="pull-right"><u>Read More</u></a></p>
 
+                    </div>
+                    <?php
+                }
+                ?>
+                <div class="clearfix"></div>
             </div>
-            <div class="col-xs-12 col-sm-4 pad-bottom-xs">
-                <img src="<?php echo $this->themeUrl; ?>/images/img04.jpg" alt="img" class="img-responsive center-block main-border-color img">
-                <p class="text-center"><i>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"</i></p>
-                <p style="padding: 0 25px;"><span class="text-left">Oct 10, 2017</span><a href="#" class="pull-right"><u>Read More</u></a></p>
-
-            </div>
-            <div class="col-xs-12 col-sm-4 pad-bottom-xs">
-                <img src="<?php echo $this->themeUrl; ?>/images/img04.jpg" alt="img" class="img-responsive center-block main-border-color img">
-                <p class="text-center"><i>"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor"</i></p>
-                <p style="padding: 0 25px;"><span class="text-left">Oct 10, 2017</span><a href="#" class="pull-right"><u>Read More</u></a></p>
-
-            </div>
-            <div class="clearfix"></div>
-
         </div>
     </div>
-</div>
+    <?php
+}
+?>
 <!-- end of test-section -->

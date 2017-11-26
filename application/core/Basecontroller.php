@@ -44,7 +44,7 @@ class Basecontroller extends CI_Controller {
     protected function getAgentPic() {
         $readDir = $this->uploadPath . 'user/' . $this->agentDetail['pk_agent_id'];
         $picDir = $this->openDir($readDir);
-        $response = $picDir ? $this->themeUrl . '/uploads/user/' . $this->agentDetail['pk_agent_id'] . '/' . reset($picDir) : $picDir;
+        $response = $picDir ? $this->themeUrl . '/uploads/user/' . $this->agentDetail['pk_agent_id'] . '/' . reset($picDir) : $this->themeUrl.'/images/avatar.bmp';
         return $response;
     }
 

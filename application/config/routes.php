@@ -267,6 +267,14 @@ $route['lead/detail/(:num)'] = 'dashboard/product/detailLead/$1';
 //Agent Expenses
 $route['expense'] = 'dashboard/dashbaord/expenses';
 
+//Community
+$route['community'] = 'dashboard/community/index';
+$route['community/new_post'] = 'dashboard/community/newPost';
+$route['community/save_post'] = 'dashboard/community/saveNewPost';
+$route['community/post/(:num)'] = 'dashboard/community/detailPost/$1';
+$route['community/post/(:num)/save_comment'] = 'dashboard/community/saveComment/$1';
+$route['community/(:any)'] = 'dashboard/community/index';
+
 
 $route['default_controller'] = 'index';
 $route['404_override'] = '';

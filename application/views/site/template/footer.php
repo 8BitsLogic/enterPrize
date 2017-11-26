@@ -5,8 +5,8 @@
             <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-2">
                 <h4>ABOUT</h4>
                 <ul class="list-unstyled">
-                    <li><a href="#">Company Profile</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="<?php echo base_url('info/company_profile')?>">Company Profile</a></li>
+                    <li><a href="<?php echo base_url('contact_us')?>">Contact Us</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-2">
@@ -20,16 +20,15 @@
             <div class="col-xs-12 col-sm-3 col-md-2">
                 <h4>COMMUNITY</h4>
                 <ul class="list-unstyled">
-                    <li><a href="<?php echo base_url('')?>">Blog</a></li>
-                    <li><a href="<?php echo base_url('')?>">Forum</a></li>
+                    <li><a href="<?php echo base_url('community')?>">Forum</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-2">
                 <h4>FOLLOW US</h4>
                 <ul class="list-inline mt-social">
                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-behance"></i></a></li>
                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
                 </ul>
             </div>
         </div>

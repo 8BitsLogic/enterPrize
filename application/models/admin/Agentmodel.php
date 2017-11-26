@@ -154,6 +154,7 @@ class Agentmodel extends Commonmodel {
         $statement = $this->prepQuery($query);
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement->execute();
         if ($statement->execute()) {
             $response['query_status'] = TRUE;
         } else {

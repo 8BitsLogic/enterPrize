@@ -23,7 +23,7 @@ class Dashboard extends Basecontroller {
         parent::__construct();
         $this->checkAgentLogin() ? '' : redirect(base_url());
 
-        $this->load->model(array('admin/Agentmodel', 'Dashboardmodel', 'admin/Paymentmodel', 'admin/Slidemodel'));
+        $this->load->model(array('admin/Agentmodel', 'Dashboardmodel', 'admin/Paymentmodel', 'admin/Slidemodel', 'Communitymodel'));
 
         $this->data = array(
             'page' => array('title' => 'Dashboard'),
@@ -40,6 +40,8 @@ class Dashboard extends Basecontroller {
 
     public function index() {
         $this->data['slides'] = $this->slideObj->getAllSlides('active');
+        $postList = $this->Communitymodel->getPosts('publish');
+        $this->data['postList'] = is_array($postList) ? array_slice($postList, 0, 8) : FALSE;
         $this->loadSiteLayout($this->data['view'] . 'dashbaord', $this->data);
     }
 
@@ -118,7 +120,7 @@ class Dashboard extends Basecontroller {
     public function updatePassword() {
         if ($this->input->post('submit')) {
             if ($this->validateUpdatePasswrodPost()) {
-                $password = $this->input->post('password');
+                $password = $this->input->post('pass');
                 $result = $this->agentObj->updatePassword($this->agentDetail['pk_agent_id'], $password);
                 $message = $result['query_status'] ? str_replace($this->alertMessages['str_replace'], 'Password updated', $this->alertMessages['success']) :
                         $message = str_replace($this->alertMessages['str_replace'], $result[0] . ':' . $result[2], $this->alertMessages['warning']);
