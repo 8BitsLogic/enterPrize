@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="required">*</span></label>
                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                <input id="descp" required="" class="form-control col-md-7 col-xs-12" name="descp" type="text" value="<?php echo set_value('descp') ?>" />
+                                <textarea  id="descp" required="" class="form-control col-md-7 col-xs-12" name="descp"><?php echo set_value('descp') ?></textarea>
                             </div>
                         </div>
 

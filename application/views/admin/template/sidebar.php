@@ -43,6 +43,17 @@
                             <li><a href="<?php echo base_url('admin/product/new'); ?>">New</a></li>
                         </ul>
                     </li>
+                    <li><a><i class="fa fa-shekel"></i> Community Post <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo base_url('admin/community/queries'); ?>">Queries</a></li>
+                        </ul>
+                    </li>
+                    <li><a><i class="fa fa-shekel"></i> Email CMS <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo base_url('admin/email_cms'); ?>">List</a></li>
+                            <li><a href="<?php echo base_url('admin/email_cms/new'); ?>">New</a></li>
+                        </ul>
+                    </li>
 
                     <li><a><i class="fa fa-shekel"></i> Test <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">

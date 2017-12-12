@@ -40,7 +40,7 @@ class Product extends Basecontroller {
     }
 
     public function index($unlock = '%') {
-        $this->data['productList'] = $this->prdObj->getAllProducts($this->status, $unlock, '%');
+        $this->data['productList'] = $this->prdObj->getAllProducts($this->status, $unlock, '%', $this->agentDetail['pk_agent_id']);
         $this->loadSiteLayout($this->data['view'] . 'all_product', $this->data);
     }
 

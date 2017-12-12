@@ -195,10 +195,7 @@ $route['admin/form_builder/form/detail/(:num)'] = 'admin/formbuilder/detailForm'
 $route['admin/form_builder/form/edit/(:num)'] = 'admin/Formbuilder/editForm/$1';
 $route['admin/form_builder/form/save/(:num)'] = 'admin/formbuilder/saveForm/$1';
 $route['admin/form_builder/form/delete/(:num)'] = 'admin/formbuilder/deleteForm/$1';
-
 $route['admin/form_builder/form/(:num)/field/(:num)/(:any)'] = 'admin/formbuilder/updateFormFieldRel/$1/$2/$3';
-
-
 $route['admin/form_builder/(:any)'] = 'admin/formbuilder/index';
 
 //Lead
@@ -208,9 +205,16 @@ $route['admin/lead/(:num)/inotes'] = 'admin/lead/postInternalNotes/$1';
 $route['admin/lead/(:num)/enotes'] = 'admin/lead/postExternalNotes/$1';
 $route['admin/lead/(:num)/approve'] = 'admin/lead/approveLead/$1';
 $route['admin/lead/(:num)/decline'] = 'admin/lead/declineLead/$1';
-
-
 $route['admin/lead/(:any)'] = 'admin/lead/index';
+
+//Community Board
+$route['admin/community/queries'] = 'admin/community/index';
+$route['admin/community/queries/(:num)/detail'] = 'admin/community/detailQuery/$1';
+$route['admin/community/queries/(:num)/status/(:any)'] = 'admin/community/statusQuery/$1/$2';
+$route['admin/community/queries/(:num)/delete'] = 'admin/community/deleteQuery/$1'; 
+$route['admin/community/queries/(:num)/featured/(:any)'] = 'admin/community/featuredQuery/$1/$2'; 
+$route['admin/community/queries/(:num)/comment/(:any)/status/(:any)'] = 'admin/community/statusComment/$1/$2/$3';
+$route['admin/community/queries/(:num)/comment/(:any)/delete'] = 'admin/community/deleteComment/$1/$2';
 
 
 // Admin Dashboard

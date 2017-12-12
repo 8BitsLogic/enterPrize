@@ -164,20 +164,24 @@ if ($postList) {
         <div class="container">
             <div class="row">
                 <div class="pad-top-xs"></div>
-                <?php
-                foreach ($postList as $keyP => $valP) {
-                    ?>
-                    <div class="col-xs-12 col-sm-4 pad-bottom-xs">
-                        <img src="<?php echo $agentPic; ?>" alt="img" class="img-responsive center-block main-border-color img">
-                        <p class="text-center"><i><?php echo substr($valP['post_title'], 0, 90)?></i></p>
-                        <p style="padding: 0 25px;">
-                            <span class="text-left"><?php echo date_format(date_create($valP['post_create_date']), 'M d, Y'); ?></span>
-                            <a href="<?php echo base_url('community/post/'.$valP['pk_post_id']); ?>" class="pull-right"><u>Read More</u></a></p>
-
-                    </div>
-                    <?php
-                }
-                ?>
+                <div id="slider">
+                    <ul class="als-wrapper">
+                        <?php
+                        foreach ($postList as $keyP => $valP) {
+                            ?>
+                            <li class="col-xs-12 col-sm-4">
+                                <img src="<?php echo $agentPic; ?>" alt="img" class="img-responsive center-block main-border-color img">
+                                <p class="text-center"><i><?php echo substr($valP['post_title'], 0, 90) ?></i></p>
+                                <p style="padding: 0 25px;">
+                                    <span class="text-left"><?php echo date_format(date_create($valP['post_create_date']), 'M d, Y'); ?></span>
+                                    <a href="<?php echo base_url('community/post/' . $valP['pk_post_id']); ?>" class="pull-right"><u>Read More</u></a>
+                                </p>
+                            </li>
+                            <?php
+                        }
+                        ?>
+                    </ul>
+                </div>
                 <div class="clearfix"></div>
             </div>
         </div>
