@@ -216,6 +216,23 @@ $route['admin/community/queries/(:num)/featured/(:any)'] = 'admin/community/feat
 $route['admin/community/queries/(:num)/comment/(:any)/status/(:any)'] = 'admin/community/statusComment/$1/$2/$3';
 $route['admin/community/queries/(:num)/comment/(:any)/delete'] = 'admin/community/deleteComment/$1/$2';
 
+//Email CMS
+$route['admin/email_cms'] = 'admin/EmailCMS/index';
+$route['admin/email_cms/view/(:num)'] = 'admin/EmailCMS/detailEmail/$1';
+$route['admin/email_cms/new'] = 'admin/EmailCMS/newEmail';
+$route['admin/email_cms/edit/(:num)'] = 'admin/EmailCMS/editEmail/$1';
+$route['admin/email_cms/save'] = 'admin/EmailCMS/saveEmail';
+$route['admin/email_cms/save/(:num)'] = 'admin/EmailCMS/saveEmail/$1';
+$route['admin/email_cms/delete/(:num)'] = 'admin/EmailCMS/deleteEmail/$1';
+
+$route['admin/email_cms/setting'] = 'admin/EmailCMS/settingIndex';
+$route['admin/email_cms/setting/view/(:num)'] = 'admin/EmailCMS/settingPreview/$1';
+$route['admin/email_cms/setting/new'] = 'admin/EmailCMS/settingNew';
+$route['admin/email_cms/setting/edit/(:num)'] = 'admin/EmailCMS/settingEdit/$1';
+$route['admin/email_cms/setting/save'] = 'admin/EmailCMS/settingSavePost';
+$route['admin/email_cms/setting/save/(:num)'] = 'admin/EmailCMS/settingSavePost/$1';
+$route['admin/email_cms/setting/delete/(:num)'] = 'admin/EmailCMS/settingDelete/$1';
+
 
 // Admin Dashboard
 $route['admin'] = 'admin/dashboard/index';

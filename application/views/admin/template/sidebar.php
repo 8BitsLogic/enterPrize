@@ -1,7 +1,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="<?php echo base_url('admin')?>" class="site_title user-profile"><img alt="logo" src="<?php echo $this->themeUrl.'/images/logo.jpg'; ?>" ><span>Admin</span></a>
+            <a href="<?php echo base_url('admin') ?>" class="site_title user-profile"><img alt="logo" src="<?php echo $this->themeUrl . '/images/logo.jpg'; ?>" ><span>Admin</span></a>
         </div>
 
         <div class="clearfix"></div>
@@ -36,7 +36,7 @@
                             <li><a href="<?php echo base_url('admin/slide/new'); ?>">New</a></li>
                         </ul>
                     </li>
-                    
+
                     <li><a><i class="fa fa-shekel"></i> Product <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="<?php echo base_url('admin/product'); ?>">List</a></li>
@@ -52,6 +52,12 @@
                         <ul class="nav child_menu">
                             <li><a href="<?php echo base_url('admin/email_cms'); ?>">List</a></li>
                             <li><a href="<?php echo base_url('admin/email_cms/new'); ?>">New</a></li>
+                            <li><a>Email Setting <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li class="sub_menu"><a href="<?php echo base_url('admin/email_cms/setting'); ?>">List Settings </a></li>
+                                    <li><a href="<?php echo base_url('admin/email_cms/setting/new'); ?>">New setting </a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 
@@ -70,36 +76,37 @@
                                         </ul>
                                     </li>
                                 </ul>
+                            </li>
                         </ul>
                     </li>   
 
                     <li><a><i class="fa fa-shekel"></i> Training <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<?php echo base_url('admin/training')?>">List</a></li>
-                            <li><a href="<?php echo base_url('admin/training/new')?>">New</a></li>
+                            <li><a href="<?php echo base_url('admin/training') ?>">List</a></li>
+                            <li><a href="<?php echo base_url('admin/training/new') ?>">New</a></li>
                         </ul>
                     </li>
 
                     <li><a><i class="fa fa-shekel"></i> Static pages <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<?php echo base_url('admin/cms')?>">List</a></li>
-                            <li><a href="<?php echo base_url('admin/cms/new')?>">New</a></li>
+                            <li><a href="<?php echo base_url('admin/cms') ?>">List</a></li>
+                            <li><a href="<?php echo base_url('admin/cms/new') ?>">New</a></li>
                         </ul>
                     </li>
 
                     <li><a><i class="fa fa-shekel"></i> Form Builder <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="<?php echo base_url('admin/form_builder/form')?>">List</a></li>
-                            <li><a href="<?php echo base_url('admin/form_builder/form/new')?>">New</a></li>
+                            <li><a href="<?php echo base_url('admin/form_builder/form') ?>">List</a></li>
+                            <li><a href="<?php echo base_url('admin/form_builder/form/new') ?>">New</a></li>
                             <li><a>Form Fields<span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="<?php echo base_url('admin/form_builder/field/list')?>">List Fields</a></li>
-                                    <li><a href="<?php echo base_url('admin/form_builder/field/new')?>">New Field</a></li>
+                                    <li><a href="<?php echo base_url('admin/form_builder/field/list') ?>">List Fields</a></li>
+                                    <li><a href="<?php echo base_url('admin/form_builder/field/new') ?>">New Field</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </div>
         </div>

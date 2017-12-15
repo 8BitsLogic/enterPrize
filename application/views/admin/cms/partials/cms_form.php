@@ -19,7 +19,7 @@ echo form_open(base_url('admin/cms/save' . $wId), $attributes);
 <div class="form-group">
     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="descp">Page Content <span class="required">*</span></label>
     <div class="col-md-6 col-sm-6 col-xs-12">
-        <textarea class="form-control" id="textEditor" name="descp" placeholder=""><?php echo isset($pageDetail['page_content']) ? $pageDetail['page_content'] : '' ;?></textarea>
+        <textarea class="form-control textEditor" id="" name="descp" placeholder=""><?php echo isset($pageDetail['page_content']) ? $pageDetail['page_content'] : '' ;?></textarea>
     </div>
 </div>
 <div class="form-group">
