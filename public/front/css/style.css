@@ -543,8 +543,10 @@ body.boxed-v #wrapper {
     padding: 10px 0 10px;
     -webkit-transition: all ease .3s;
     transition: all ease .3s;
-    background: #252021;
-    border-bottom: 1px solid #6d717d;
+    background: transparent;
+    /*background: #252021;*/
+    /*border-bottom: 1px solid #6d717d;*/
+    border-bottom: none;
 }
 
 #header.nospace .holder {
@@ -635,7 +637,7 @@ body.boxed-v #wrapper {
 }
 
 #nav .nav-list a img {
-    border-width: 3px;
+    border-width: 2px;
     border-radius: 50%;
     border-style: solid;
     margin: 0;
@@ -975,11 +977,13 @@ body.boxed-v #wrapper {
 }
 
 .test-section img {
-    border-width: 3px;
+    border-width: 2px;
     border-radius: 50%;
     border-style: solid;
     margin: 0 auto 25px;
     border-color: white;
+    width: 100px;
+    height: 100px;
 }
 
 .test-section a {
@@ -1256,7 +1260,7 @@ body.boxed-v #wrapper {
 }
 
 #header ul.nav-list.list-inline.text-center {
-    display: none;
+    /*display: none;*/
 }
 #header.sticky ul.nav-list.list-inline.text-center {
     display: block;

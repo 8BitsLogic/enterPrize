@@ -170,7 +170,7 @@ if ($postList) {
                         foreach ($postList as $keyP => $valP) {
                             ?>
                             <li class="col-xs-12 col-sm-4">
-                                <img src="<?php echo $agentPic; ?>" alt="img" class="img-responsive center-block main-border-color img">
+                                <img src="<?php echo $valP['agent_pic']; ?>" alt="img" class="img-responsive center-block main-border-color img">
                                 <p class="text-center"><i><?php echo substr($valP['post_title'], 0, 90) ?></i></p>
                                 <p style="padding: 0 25px;">
                                     <span class="text-left"><?php echo date_format(date_create($valP['post_create_date']), 'M d, Y'); ?></span>

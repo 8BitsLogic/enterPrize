@@ -6,7 +6,7 @@
             echo $this->session->flashdata($flashKey);
             ?>
             <div class="col-md-2 text-center">
-                <img class="image img-circle img-thumbnail" style="width: 100px" src="<?php echo $agentPic; ?>"/>
+                <img class="image img-circle img-thumbnail" style="width: 100px; height: 100px;" src="<?php echo $postDetail['agent_pic']; ?>"/>
                 <p>
                     <?php echo $postDetail['agent_username']; ?><br> 
                     <?php echo date_format(date_create($postDetail['post_create_date']), 'd-m-Y') ?>

@@ -21,6 +21,8 @@
                 <h4>COMMUNITY</h4>
                 <ul class="list-unstyled">
                     <li><a href="<?php echo base_url('community')?>">Forum</a></li>
+                    <li><hr></li>
+                    <li><a href="<?php echo base_url('logout')?>">Sign Out</a></li>
                 </ul>
             </div>
             <div class="col-xs-12 col-sm-3 col-md-2">

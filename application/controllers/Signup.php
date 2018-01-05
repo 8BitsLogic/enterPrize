@@ -19,6 +19,7 @@ class Signup extends Basecontroller {
 
     public function __construct() {
         parent::__construct();
+        $this->checkAgentLogin() ? redirect(base_url()) : '' ;
         $this->load->model(array('Signupmodel', 'admin/Agentmodel'));
         $this->load->helper(array('form'));
         $this->load->library('form_validation');

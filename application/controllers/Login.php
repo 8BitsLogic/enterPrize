@@ -18,6 +18,7 @@ class Login extends Basecontroller{
     
     public function __construct() {
         parent::__construct();
+        
         $this->uri->segment(1) == 'logout' ? '' : $this->checkAgentLogin() ? redirect(base_url()) : '';
         
         $this->load->model(array('Loginmodel'));
@@ -29,7 +30,6 @@ class Login extends Basecontroller{
         );
 
         $this->loginObj = new Loginmodel;
-        
     }
     
     public function index() {
@@ -68,6 +68,6 @@ class Login extends Basecontroller{
     
     public function logout() {
         session_destroy();
-        return redirect(base_url());
+        return redirect(base_url('login'));
     }
 }

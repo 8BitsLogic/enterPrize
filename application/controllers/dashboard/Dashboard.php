@@ -42,6 +42,7 @@ class Dashboard extends Basecontroller {
         $this->data['slides'] = $this->slideObj->getAllSlides('active');
         $postList = $this->Communitymodel->getPosts('publish');
         $this->data['postList'] = is_array($postList) ? array_slice($postList, 0, 8) : FALSE;
+        $this->data['postList'] = is_array($this->data['postList']) ? $this->addAgentPic($this->data['postList']) : FALSE;
         $this->loadSiteLayout($this->data['view'] . 'dashbaord', $this->data);
     }
 

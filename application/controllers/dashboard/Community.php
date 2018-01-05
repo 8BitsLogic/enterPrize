@@ -35,15 +35,21 @@ class Community extends Basecontroller {
 
     public function index() {
         $this->data['postList'] = $this->comObj->getPosts($this->getPublish());
+        if (is_array($this->data['postList'])) {
+            $this->data['postList'] = is_array($this->data['postList']) ? $this->addAgentPic($this->data['postList']) : FALSE;
+        }
         $this->loadSiteLayout($this->data['view'] . 'all_post', $this->data);
     }
 
     public function detailPost($id) {
         $postList = $this->comObj->getPosts($this->getPublish());
         $this->data['postList'] = is_array($postList) ? array_slice($postList, 0, 2) : '';
-        
+        if (is_array($this->data['postList'])) {
+            $this->data['postList'] = is_array($this->data['postList']) ? $this->addAgentPic($this->data['postList']) : FALSE;
+        }
         $this->data['postDetail'] = $this->comObj->getPosts($this->getPublish(), $id)[0];
-        $this->data['postDetail']? '' : redirect(base_url('community'));
+        $this->data['postDetail'] ? '' : redirect(base_url('community'));
+        $this->data['postDetail']['agent_pic'] = $this->getAgentPic($this->data['postDetail']['fk_agent_id']);
         $this->data['postComments'] = $this->comObj->getComments($this->getPublish(), $id);
         $this->loadSiteLayout($this->data['view'] . 'post_detail', $this->data);
     }
@@ -77,10 +83,10 @@ class Community extends Basecontroller {
         $this->form_validation->set_rules('descp', 'Description', 'trim|required|alpha_numeric_spaces');
         return $this->form_validation->run() ? TRUE : FALSE;
     }
-    
+
     public function saveComment($postId) {
-        if($this->input->post('submit')){
-            if($this->validateCommentPost()){
+        if ($this->input->post('submit')) {
+            if ($this->validateCommentPost()) {
                 $post = $this->input->post();
                 $post['commentId'] = uniqid();
                 $post['agentId'] = $this->agentDetail['pk_agent_id'];
@@ -88,16 +94,16 @@ class Community extends Basecontroller {
                 $result = $this->comObj->insertComment($post);
                 $message = $result['query_status'] ? str_replace($this->alertMessages['str_replace'], 'New comment posted.', $this->alertMessages['success']) :
                         str_replace($this->alertMessages['str_replace'], $result['error_message'], $this->alertMessages['warning']);
-            }else{
+            } else {
                 return $this->detailPost($postId);
             }
-        }else {
+        } else {
             $message = str_replace($this->alertMessages['str_replace'], 'Something went wrong, try again', $this->alertMessages['warning']);
         }
         $this->session->set_flashdata($this->data['flashKey'], $message);
-        return redirect(base_url('community/post/'.$postId));
+        return redirect(base_url('community/post/' . $postId));
     }
-    
+
     private function validateCommentPost() {
         $this->form_validation->set_rules('descp', 'Comment', 'trim|required|alpha_numeric_spaces');
         return $this->form_validation->run() ? TRUE : FALSE;

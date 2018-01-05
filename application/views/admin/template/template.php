@@ -185,7 +185,7 @@
         <!-- /Flot -->
 
         <!-- Doughnut Chart -->
-        <script>
+<!--        <script>
             $(document).ready(function () {
                 var options = {
                     legend: false,
@@ -224,8 +224,33 @@
                     options: options
                 });
             });
-        </script>
+        </script>-->
         <!-- /Doughnut Chart -->
+
+        <script>
+            $(document).ready(function () {
+                var options = {
+                    legend: false,
+                    responsive: false
+                };
+
+                new Chart(document.getElementById("productPieChart"), {
+                    type: 'doughnut',
+                    tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                    data: {
+                        labels: <?php echo $productLeads['pie_chart_values']['labels']; ?>,
+                        datasets: [{
+                                data: <?php echo $productLeads['pie_chart_values']['percent']; ?>,
+                                backgroundColor: <?php echo $productLeads['pie_chart_values']['colorCodes1']; ?>,
+                                hoverBackgroundColor: <?php echo $productLeads['pie_chart_values']['colorCodes1']; ?>,
+                            }]
+                    },
+                    options: options
+                });
+            });
+        </script>
+
+
 
     </body>
 </html>

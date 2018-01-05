@@ -45,7 +45,7 @@ class Product extends Basecontroller {
     }
 
     public function detail($id) {
-        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '%', $id)[0];
+        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '%', $id, $this->agentDetail['pk_agent_id'])[0];
         !$this->data['productDetail'] ? redirect(base_url('product')) : '';
         $this->getProductDetails($id);
         $this->loadSiteLayout($this->data['view'] . 'detial', $this->data);
@@ -63,7 +63,9 @@ class Product extends Basecontroller {
     }
 
     public function loadLeadForm($prId) {
-        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '1',$prId)[0];
+        $this->data['productDetail'] = $this->prdObj->getAllProducts($this->status, '1',$prId, $this->agentDetail['pk_agent_id'])[0];
+        $this->data['productDetail']['photo'] = $this->getProductGallery($prId)[0];
+        $this->data['page']['title'] = 'Capture Lead - '. $this->data['productDetail']['product_title'];
         $this->data['leadForm'] = is_array($this->data['productDetail']) && $this->data['productDetail']['prd_unlock'] ?
                 $this->prdObj->getProductLeadForm($prId) : redirect(base_url('product'));
         $this->loadSiteLayout($this->data['leadView'] . 'leadForm', $this->data);

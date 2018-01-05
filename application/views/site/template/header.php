@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-xs-12 text-center">
                     <!-- mobile logo -->
-                    <div class="logo main-bg-color text-uppercase pull-left visible-xs"><a href="<?php echo base_url(); ?>"><img src="images/logo.png" alt="img" class="img-responsive"></a></div>
+                    <div class="logo main-bg-color text-uppercase pull-left visible-xs"><a href="<?php echo base_url(); ?>"><img src="<?php echo $this->themeUrl; ?>/images/logo.png" alt="img" class="img-responsive"></a></div>
                     <a href="<?php echo base_url(); ?>" class="nav-opener pull-right visible-xs"><i class="fa fa-bars" aria-hidden="true"></i></a>
                     <!-- page navigation start here -->
                     <nav id="nav">

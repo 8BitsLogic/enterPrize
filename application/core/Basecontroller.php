@@ -41,11 +41,19 @@ class Basecontroller extends CI_Controller {
         return $this->paymentObj->getAgentsTotalAvailableFunds($id);
     }
 
-    protected function getAgentPic() {
-        $readDir = $this->uploadPath . 'user/' . $this->agentDetail['pk_agent_id'];
+    protected function getAgentPic($agentId = NULL) {
+        $agentId = is_null($agentId) ? $this->agentDetail['pk_agent_id'] : $agentId;
+        $readDir = $this->uploadPath . 'user/' . $agentId;
         $picDir = $this->openDir($readDir);
-        $response = $picDir ? $this->themeUrl . '/uploads/user/' . $this->agentDetail['pk_agent_id'] . '/' . reset($picDir) : $this->themeUrl.'/images/avatar.bmp';
+        $response = $picDir ? $this->themeUrl . '/uploads/user/' . $agentId . '/' . reset($picDir) : $this->themeUrl.'/images/avatar.bmp';
         return $response;
+    }
+    
+    protected function addAgentPic($postList) {
+        foreach($postList as $postKey => $postVal){
+            $postList[$postKey]['agent_pic'] = $this->getAgentPic($postVal['fk_agent_id']);
+        }
+        return $postList;
     }
 
     protected function openDir($path) {
@@ -225,5 +233,13 @@ class Basecontroller extends CI_Controller {
 
     public function match_date($date) {
         return (bool) preg_match("/^([0-9]|0[1-9]|[12][0-9]|3[01])[\/]([1-12]|0[1-9]|1[012])[\/](19|20)\d\d$/", $date);
+    }
+    
+    private function randomColorPart() {
+        return str_pad(dechex(mt_rand(0, 255)), 2, '0', STR_PAD_LEFT);
+    }
+
+    protected function randomColor() {
+        return $this->randomColorPart().$this->randomColorPart().$this->randomColorPart();
     }
 }
