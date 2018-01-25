@@ -22,7 +22,7 @@
                                     <span style="display:inline;color:#ef4136"><?php echo number_format($availableFunds, 2, '.', ','); ?></span></a></li>
                         </ul>-->
                         <!-- desktop logo -->
-                        <div class="logo hidden-xs"><a href="<?php echo base_url(); ?>"><img src="<?php echo $this->themeUrl; ?>/images/logo.png" alt="img" class="img-responsive"></a></div>
+                        <div class="logo hidden-xs" style="width: 0%;"><a href="<?php echo base_url(); ?>"><img src="<?php echo $this->themeUrl; ?>/images/logo.png" alt="img" class="img-responsive"></a></div>
                     </nav>
                 </div>
             </div>

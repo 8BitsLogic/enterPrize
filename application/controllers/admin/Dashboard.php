@@ -20,6 +20,7 @@ class Dashboard extends Basecontroller {
     }
 
     public function index() {
+//        $this->editImage();
 //        echo '<pre>';
         $this->exectiveSummaryLeadCount();
         $this->exectiveSummaryConfirmedLeadCount();
@@ -27,6 +28,16 @@ class Dashboard extends Basecontroller {
         $this->getTopPerformers();
         $this->getYeartoDateProductLeads();
         $this->loadAdminLayout($this->data, 'admin/dashboard/content');
+    }
+
+    private function editImage() {
+        $imgObj = new ImgWrite();
+        $image_filepath = $this->themeUrl . '/images/cert_sample.png';
+        $imageSavePath = APPPATH.'/../public/images/';
+        $imageSaveName = 'cert'. date('Ymd').'-'. random_string('alnum', 8).'.jpg';
+        $imgObj->signCertificate("Notingham Shire", $image_filepath, $this->themeUrl, $imageSavePath, $imageSaveName);
+        exit;
+
     }
 
     private function getTopPerformers() {
@@ -59,12 +70,12 @@ class Dashboard extends Basecontroller {
     private function setValuesProdPicChartData() {
         foreach ($this->data['productLeads']['product_lead_count'] as $ppKey => $ppVal) {
             $this->data['productLeads']['product_lead_count'][$ppKey]['colorCode1'] = $this->randomColor();
-            $this->data['productLeads']['product_lead_count'][$ppKey]['percent'] = number_format($ppVal['lead_count']/$this->data['productLeads']['total_product_leads']*100, 0);
+            $this->data['productLeads']['product_lead_count'][$ppKey]['percent'] = number_format($ppVal['lead_count'] / $this->data['productLeads']['total_product_leads'] * 100, 0);
         }
     }
 
     private function prepProductPicChartData() {
-        
+
         $this->setValuesProdPicChartData();
         $percent = array();
         $label = array();
@@ -72,7 +83,7 @@ class Dashboard extends Basecontroller {
         foreach ($this->data['productLeads']['product_lead_count'] as $key => $val) {
             array_push($percent, (int) $val['percent']);
             array_push($label, substr($val['product_title'], 0, 10));
-            array_push($colorCodes1, '#'.$val['colorCode1']);
+            array_push($colorCodes1, '#' . $val['colorCode1']);
         }
         return array(
             'labels' => json_encode($label),
