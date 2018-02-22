@@ -1,8 +1,8 @@
 <?php
 foreach ($productList as $product) {
     ?>
-    <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
+    <div class="col-sm-6 col-md-3 border border-grey">
+        <div class="thumbnail ">
             <?php
             $prdImage = isset($product['product_image']) ? 'products/' . $product['pk_product_id'] . '/' . $product['product_image'] : 'download.svg';
             ?>

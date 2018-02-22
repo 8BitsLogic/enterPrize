@@ -28,8 +28,8 @@ class Product extends Basecontroller {
         $this->data = array(
             'page' => array('title' => 'Product'),
             'flashKey' => 'message_dashboard_product',
-            'view' => 'site/agent/product/',
-            'leadView' => 'site/agent/lead/',
+            'view' => $this->theme.'agent/product/',
+            'leadView' => $this->theme.'agent/lead/',
             'agentPic' => $this->getAgentPic(),
             'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );
@@ -41,6 +41,17 @@ class Product extends Basecontroller {
 
     public function index($unlock = '%') {
         $this->data['productList'] = $this->prdObj->getAllProducts($this->status, $unlock, '%', $this->agentDetail['pk_agent_id']);
+        switch ($unlock) {
+            case 1:
+                $this->data['page']['sub-title'] = 'Unlocked Product List';
+                break;
+            case 0:
+                $this->data['page']['sub-title'] = 'Unlocked Product List';
+                break;
+            default:
+                $this->data['page']['sub-title'] = 'Product List';                
+                break;
+        }
         $this->loadSiteLayout($this->data['view'] . 'all_product', $this->data);
     }
 

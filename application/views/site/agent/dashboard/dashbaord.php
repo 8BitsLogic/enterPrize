@@ -105,12 +105,12 @@
 
             <div class="col-xs-6 col-sm-4">
                 <!-- start of steps-box -->
-                <a href="<?php echo base_url('training') ?>">
+                <a href="<?php echo base_url('dashboard/ewallet') ?>">
                     <div class="steps-box text-center mar-bottom-md pad-top-xs">
                         <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/development.png" alt="img" class="img-responsive"></div>
 
                         <div class="content">
-                            <h3 class="heading">development</h3>
+                            <h3 class="heading">Wallet</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>
@@ -126,7 +126,7 @@
                         <div class="icon-box main-color"><img src="<?php echo $this->themeUrl; ?>/images/permote.png" alt="img" class="img-responsive"></div>
 
                         <div class="content">
-                            <h3 class="heading">permote</h3>
+                            <h3 class="heading">promote</h3>
                             <span class="border main-bg-color"></span>
                             <p class="block">Unlock products and start generating revenue.</p>
                         </div>

@@ -36,7 +36,7 @@ class Communitymodel extends Commonmodel {
     }
 
     public function getPosts($status = '%', $id = '%') {
-        $query = "SELECT p.*, a.agent_username
+        $query = "SELECT p.*, a.agent_username, CONCAT(a.agent_first_name,' ',a.agent_last_name) as fullname
             FROM tbl_post AS p
             LEFT JOIN tbl_agent AS a ON a.pk_agent_id = p.fk_agent_id
             WHERE pk_post_id LIKE :id AND post_status LIKE :status ORDER BY post_status DESC";

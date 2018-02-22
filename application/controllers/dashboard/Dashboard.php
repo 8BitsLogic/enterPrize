@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,7 +28,7 @@ class Dashboard extends Basecontroller {
         $this->data = array(
             'page' => array('title' => 'Dashboard'),
             'flashKey' => 'message_dashboard',
-            'view' => 'site/agent/dashboard/',
+            'view' => $this->theme.'agent/dashboard/',
             'agentPic' => $this->getAgentPic(),
             'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );

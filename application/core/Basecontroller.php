@@ -9,12 +9,14 @@ class Basecontroller extends CI_Controller {
 
     public $themeUrl;
     public $themeUrlSite;
+    public $theme;
     protected $uploadPath;
     protected $alertMessages;
     protected $agentDetail;
     protected $status = 'active';
     private $agentObj;
     private $paymentObj;
+    private $template;
     public $agentSessionKey;
 
     public function __construct() {
@@ -27,7 +29,7 @@ class Basecontroller extends CI_Controller {
 //        $this->themeUrl = 'http://ep.fliegentech.com/public';
         $this->uploadPath = APPPATH . '../public/uploads/';
         $this->setAlertMessages();
-
+        
         $this->agentObj = new Agentmodel;
         $this->paymentObj = new Paymentmodel;
         $this->agentSessionKey = 'agent_detail';
@@ -66,39 +68,38 @@ class Basecontroller extends CI_Controller {
         if (empty($data)) {
             $data = array();
         }
-        $template = 'admin/template/';
-        $data['header'] = $this->load->view($template . 'header', $data, TRUE);
-        $data['footer'] = $this->load->view($template . 'footer', $data, TRUE);
-        $data['sidebar'] = $this->load->view($template . 'sidebar', $data, TRUE);
+        $data['header'] = $this->load->view($this->template . 'header', $data, TRUE);
+        $data['footer'] = $this->load->view($this->template . 'footer', $data, TRUE);
+        $data['sidebar'] = $this->load->view($this->template . 'sidebar', $data, TRUE);
         $data['content'] = $this->load->view($content_path, $data, TRUE);
-        $this->load->view($template . 'template', $data);
+        $this->load->view($this->template . 'template', $data);
     }
 
     public function loadSiteLayout($content_path, $data = array()) {
-        $template = 'site/template/';
-        $data['header'] = $this->load->view($template . 'header', $data, TRUE);
-        $data['footer'] = $this->load->view($template . 'footer', $data, TRUE);
+        $data['header'] = $this->load->view($this->template . 'header', $data, TRUE);
+        $data['footer'] = $this->load->view($this->template . 'footer', $data, TRUE);
         $data['content'] = $this->load->view($content_path, $data, TRUE);
-        $this->load->view($template . 'template', $data);
+        $this->load->view($this->template . 'template', $data);
     }
     
     public function loadSiteBasicHeaderLayout($content_path, $data = array()) {
-        $template = 'site/template/';
-        $data['header'] = $this->load->view($template . 'header_basic', $data, TRUE);
-        $data['footer'] = $this->load->view($template . 'footer', $data, TRUE);
+        $data['header'] = $this->load->view($this->template . 'header_basic', $data, TRUE);
+        $data['footer'] = $this->load->view($this->template . 'footer', $data, TRUE);
         $data['content'] = $this->load->view($content_path, $data, TRUE);
-        $this->load->view($template . 'template', $data);
+        $this->load->view($this->template . 'template', $data);
     }
 
     public function loadLayoutnoHF($content_path, $data = array()) {
-        $template = 'site/template/';
         $data['content'] = $this->load->view($content_path, $data, TRUE);
-        $this->load->view($template . 'template_noHF', $data);
+        $this->load->view($this->template . 'template_noHF', $data);
     }
 
     private function setThemeUrl() {
-        $this->themeUrl = base_url('public');
-        $this->themeUrlSite = base_url('public/front');
+        $this->theme = 'radium-theme/';
+        $this->template = $this->theme.'template/';
+
+        $this->themeUrl = base_url('public/');
+        $this->themeUrlSite = $this->themeUrl.$this->theme;
     }
 
     private function setAlertMessages() {

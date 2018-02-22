@@ -24,10 +24,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $this->themeUrlSite; ?>/css/slick.css" />
         <link rel="stylesheet" type="text/css" href="<?php echo $this->themeUrlSite; ?>/css/slick-theme.css" />
 
-        <link href="<?php echo $this->themeUrlSite; ?>/fonts/OpenSans.css" rel="stylesheet">
-        <link href="<?php echo $this->themeUrlSite; ?>/fonts/Montserrat.css" rel="stylesheet">
-        <link href="<?php echo $this->themeUrlSite; ?>/fonts/font-awesome.css" rel="stylesheet">
-        <link href="<?php echo $this->themeUrlSite; ?>/fonts/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600%7cRaleway:400,600,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link href="<?php echo $this->themeUrl; ?>/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 
     </head>
 
@@ -58,7 +57,14 @@
             <span id="back-top" class="fa fa-angle-up main-bg-color"></span>
         </div>
         <script src="<?php echo $this->themeUrlSite; ?>/js/jquery.js"></script>
-        <script src="<?php echo $this->themeUrlSite; ?>/js/plugins.js" defer></script>
+        <?php
+        
+        if (uri_string() != 'dashboard') {
+            ?>
+            <script src="<?php echo $this->themeUrlSite; ?>/js/plugins.js" defer></script> 
+            <?php
+        }
+        ?>
         <script src="<?php echo $this->themeUrlSite; ?>/js/jquery.main.js" defer></script>
 
         <script type="text/javascript" src="<?php echo $this->themeUrlSite; ?>/js/slick.min.js"></script>

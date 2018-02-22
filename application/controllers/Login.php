@@ -26,7 +26,7 @@ class Login extends Basecontroller{
         $this->data = array(
             'page' => array('title' => 'Agent Login'),
             'flashKey' => 'message_login',
-            'view' => 'site/login/'
+            'view' => $this->theme.'login/'
         );
 
         $this->loginObj = new Loginmodel;

@@ -14,7 +14,7 @@
                             <li><a href="<?php echo base_url('test') ?>" class="smooth">Performance</a></li>
                         </ul>
                         <ul class="nav-list list-inline text-center">
-                            <li><a href="<?php echo base_url('training') ?>" class="smooth">Development</a></li>
+                            <li><a href="<?php echo base_url('dashboard/ewallet') ?>" class="smooth">Wallet</a></li>
                             <li><a href="<?php echo base_url('') ?>" class="smooth">Promote</a></li>
                             <li><a href="<?php echo base_url('dashboard/ewallet') ?>" class="smooth">Expenses</a></li>
                             <li><a href="<?php echo base_url('dashboard/profile') ?>" class="smooth"><img src="<?php echo $agentPic ? $agentPic : $this->themeUrl . '/images/img04.jpg'; ?>" alt="img" class="img-responsive main-border-color img" style="display:inline">&nbsp;
