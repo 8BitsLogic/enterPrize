@@ -21,9 +21,9 @@ $selected = 'selected=""';
 $actionUrl = isset($activationKey) ? 'signup/save/' . $activationKey : 'agent/save' . $id;
 ?>
 <?php $this->load->view($view . '../agent/partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <div class="container">                 
-        <div class="row">
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

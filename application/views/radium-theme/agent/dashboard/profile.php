@@ -1,46 +1,38 @@
 <?php $this->load->view($view . '../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="process">
-                    <div class="process-row nav nav-tabs">
-                        <div class="process-step">
-                            <button type="button" class="btn btn-info btn-circle" data-toggle="tab" href="#menu1"><i class="fa fa-edit fa-3x"></i></button>
-                            <p><small>Edit<br />Profile</small></p>
-                        </div>
-                        <div class="process-step">
-                            <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu2"><i class="fa fa-newspaper-o fa-3x"></i></button>
-                            <p><small>Update<br />Password</small></p>
-                        </div>
-                        <div class="process-step">
-                            <button type="button" class="btn btn-default btn-circle" data-toggle="tab" href="#menu3"><i class="fa fa-picture-o fa-3x"></i></button>
-                            <p><small>Profile<br />Picture</small></p>
-                        </div>
-
-                    </div>
+<section class="default-section">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
+    <div class="auto-container">
+        <div class="row clearfix">
+            <?php
+            echo $this->session->flashdata($flashKey);
+            if (validation_errors()) {
+                ?>
+                <div class="alert alert-danger">
+                    <?php echo validation_errors(); ?>
                 </div>
-                <div class="tab-content">
-                    <div class="row">
-                        <?php
-                        echo $this->session->flashdata($flashKey);
-                        ?>
-                        <div class="error">
-                            <?php echo validation_errors(); ?>
-                        </div>
-                    </div>
-                    <div id="menu1" class="tab-pane fade active in">
-                        <?php $this->load->view($view . 'partials/profile_form'); ?>
-                    </div>
-                    <div id="menu2" class="tab-pane fade">
-                        <?php $this->load->view($view . 'partials/pass_form'); ?>
-                    </div>
-                    <div id="menu3" class="tab-pane fade">
-                        <?php $this->load->view($view . 'partials/pic_form'); ?>
-                    </div>
-                </div>
+                <?php
+            }
+            ?>
 
+        </div>
+        <div class="row clearfix">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#editProfile">Edit Profile</a></li>
+                <li><a data-toggle="tab" href="#updatePassword">Update Password</a></li>
+                <li><a data-toggle="tab" href="#changePicture">Change Picture</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div id="editProfile" class="tab-pane fade in active">
+                    <?php $this->load->view($view . 'partials/profile_form'); ?>
+                </div>
+                <div id="updatePassword" class="tab-pane fade">
+                    <?php $this->load->view($view . 'partials/pass_form'); ?>
+                </div>
+                <div id="changePicture" class="tab-pane fade">
+                    <?php $this->load->view($view . 'partials/pic_form'); ?>
+                </div>
             </div>
         </div>
 

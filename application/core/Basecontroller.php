@@ -17,6 +17,7 @@ class Basecontroller extends CI_Controller {
     private $agentObj;
     private $paymentObj;
     private $template;
+    private $templateAdmin;
     public $agentSessionKey;
 
     public function __construct() {
@@ -68,11 +69,11 @@ class Basecontroller extends CI_Controller {
         if (empty($data)) {
             $data = array();
         }
-        $data['header'] = $this->load->view($this->template . 'header', $data, TRUE);
-        $data['footer'] = $this->load->view($this->template . 'footer', $data, TRUE);
-        $data['sidebar'] = $this->load->view($this->template . 'sidebar', $data, TRUE);
+        $data['header'] = $this->load->view($this->templateAdmin . 'header', $data, TRUE);
+        $data['footer'] = $this->load->view($this->templateAdmin . 'footer', $data, TRUE);
+        $data['sidebar'] = $this->load->view($this->templateAdmin . 'sidebar', $data, TRUE);
         $data['content'] = $this->load->view($content_path, $data, TRUE);
-        $this->load->view($this->template . 'template', $data);
+        $this->load->view($this->templateAdmin . 'template', $data);
     }
 
     public function loadSiteLayout($content_path, $data = array()) {
@@ -97,6 +98,7 @@ class Basecontroller extends CI_Controller {
     private function setThemeUrl() {
         $this->theme = 'radium-theme/';
         $this->template = $this->theme.'template/';
+        $this->templateAdmin = 'admin/template/';
 
         $this->themeUrl = base_url('public/');
         $this->themeUrlSite = $this->themeUrl.$this->theme;

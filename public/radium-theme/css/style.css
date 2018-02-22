@@ -613,10 +613,10 @@ ul,li{
 ***/
 
 .main-header{
-    position:relative;
+    position:fixed;
     left:0px;
     top:0px;
-    background:#273039;
+    background:rgba(0,0,0,0.1);
     z-index:999;
     width:100%;
 }
@@ -728,7 +728,7 @@ ul,li{
     width:100%;
     left:0px;
     top:0px;
-    background:#273039;
+    background:rgba(0,0,0,0.20);
     transition:all 500ms ease;
     -moz-transition:all 500ms ease;
     -webkit-transition:all 500ms ease;
@@ -738,7 +738,8 @@ ul,li{
 
 .fixed-header .header-lower{
     position:fixed;
-    padding:0px !important;	
+    padding:0px !important;
+    background:#273039;
 }
 
 .main-header .header-lower .outer-box{
@@ -817,7 +818,7 @@ ul,li{
     position:relative;
     float:left;
     padding:10px 0px;
-    max-width: 10%
+    max-width: 6%
 }
 
 .fixed-header .header-lower .logo{
@@ -857,7 +858,7 @@ ul,li{
 .main-menu .navigation > li > a{
     position:relative;
     display:block;
-    padding:40px 10px 40px 0px;
+    padding:30px 10px 20px 0px;
     font-size:13px;
     color:#728aa3;
     line-height:20px;
@@ -868,6 +869,16 @@ ul,li{
     -webkit-transition:all 500ms ease;
     -ms-transition:all 500ms ease;
     -o-transition:all 500ms ease;
+}
+
+.main-menu .navigation > li > a > img{
+    border-width: 2px;
+    border-radius: 50%;
+    border-style: solid;
+    margin: -15px 0px 0px 0px;
+    border-color: white;
+    width: 40px;
+    height:40px;
 }
 
 .main-menu .navigation > li.dropdown > a{
@@ -889,8 +900,8 @@ ul,li{
 }
 
 .fixed-header .main-menu .navigation > li > a{
-    padding-top:30px;
-    padding-bottom:30px;	
+    padding-top:20px;
+    padding-bottom:20px;	
 }
 
 .main-menu .navigation > li:hover > a,
@@ -4400,4 +4411,8 @@ ul,li{
     border: none;
     outline: none;
     font-size: initial;
+}
+
+.error, .error > p{
+    color: #ff0000 !important;
 }

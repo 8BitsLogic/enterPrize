@@ -72,6 +72,11 @@
                             <li><a href="<?php echo base_url('dashboard/ewallet') ?>">Wallet</a></li>
                             <li><a href="<?php echo base_url('') ?>">Promote</a></li>
                             <li><a href="<?php echo base_url('dashboard/ewallet') ?>">Expenses</a></li>
+                            <li><a href="<?php echo base_url('dashboard/profile') ?>">
+                                    <img src="<?php echo $agentPic ? $agentPic : $this->themeUrl . '/images/img04.jpg'; ?>" alt="img" class="img-responsive main-border-color img" style="display:inline">&nbsp;
+                                    <span style="display:inline;color:#ef4136"><?php echo number_format($availableFunds, 2, '.', ','); ?></span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav><!-- Main Menu End-->
