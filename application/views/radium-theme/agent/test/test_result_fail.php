@@ -1,7 +1,8 @@
 <?php $this->load->view($view . '../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <div class="container">
-        <div class="row">
+
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
             <?php
             echo $this->session->flashdata($flashKey);
             ?>
@@ -36,7 +37,7 @@
                                             foreach ($attempt['wrongQuestions'] as $kQuestion => $vQuestion) {
                                                 ?>
                                             
-                                                <p><i class="fa fa-question"></i> <?php echo $vQuestion; ?></p>
+                                            <p class="question"><i class="fa fa-2x fa-question"></i> <?php echo $vQuestion; ?></p>
                                                 <?php
                                             }
                                             ?>
@@ -54,4 +55,3 @@
         </div>
     </div>
 </section>
-

@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="x_panel">
             <div class="x_title">
-                <h4 class="text-primary">Training Resources</h4>
+                <h4 class="primary">Training Resources</h4>
                 <hr>
             </div>
             <div class="x_content">

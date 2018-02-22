@@ -158,7 +158,7 @@ class Dashboard extends Basecontroller {
                 $message = $result['query_status'] ? str_replace($this->alertMessages['str_replace'], 'New payment request posted', $this->alertMessages['success']) :
                         $message = str_replace($this->alertMessages['str_replace'], $result['error_info'][0] . ':' . $result['error_info'][2], $this->alertMessages['warning']);
                 $this->session->set_flashdata($this->data['flashKey'], $message);
-                $result['query_status'] ? redirect(base_url('/payment_requst/' . $result['id'])) : '';
+                $result['query_status'] ? redirect(base_url('dashboard/ewallet/payment_requst/' . $result['id'])) : '';
             }
         } else {
             $message = str_replace($this->alertMessages['str_replace'], 'Something went wrong. Please try again.', $this->alertMessages['warning']);

@@ -1,7 +1,7 @@
 <?php $this->load->view($view . '../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <div class="container">
-        <div class="row">
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
             <?php
             echo $this->session->flashdata($flashKey);
             ?>
@@ -28,4 +28,3 @@
         </div>
     </div>
 </section>
-

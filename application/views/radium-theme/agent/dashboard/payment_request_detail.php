@@ -1,7 +1,8 @@
 <?php $this->load->view($view . '../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md">
-    <div class="container">
-        <div class="row">
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <a href="<?php echo base_url('dashboard/ewallet')?>">Back to Account Statement</a>
             <div class="col-md-6 col-md-offset-3">
                 <h2 class="text-primary">Payment Request# <?php echo $prDetail['pk_payment_request_id']; ?></h2>
                 <hr>

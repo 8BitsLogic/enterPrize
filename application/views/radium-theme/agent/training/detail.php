@@ -1,22 +1,19 @@
-<?php $this->load->view($view.'../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <div class="container">
-        <div class="row">
+<?php $this->load->view($view . '../partials/page_title'); ?>
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
             <?php
             echo $this->session->flashdata($flashKey);
             ?>
-            <div class="col-md-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2 class="text-primary"><?php echo $trainingDetail['training_title']; ?></h2>
-                        <hr>
-                    </div>
-                    <div class="x_content">
-                        <?php $this->load->view($view . 'partials/training_detail'); ?>
-                        <?php $this->load->view($view . 'partials/training_resources'); ?>
-                    </div>
-                </div>
-            </div>
+            <?php $this->load->view($view . 'partials/training_detail'); ?>
+        </div>
+    </div>
+</section>
+<hr>
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
+            <?php $this->load->view($view . 'partials/training_resources'); ?>
         </div>
     </div>
 </section>

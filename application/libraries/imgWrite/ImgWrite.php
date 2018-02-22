@@ -21,7 +21,7 @@ class ImgWrite {
      * 
      */
 
-    function signCertificate($memberName, $certificateFile, $public_file_path, $imageSavePath, $imageSaveName) {
+    function signCertificate($memberName, $certificateFile, $public_font_path, $imageSavePath, $imageSaveName) {
 
         // Copy and resample the imag
         list($width, $height) = getimagesize($certificateFile);
@@ -32,7 +32,7 @@ class ImgWrite {
         // Prepare font size and colors
         $text_color = imagecolorallocate($image_p, 0, 0, 0);
 //        $bg_color = imagecolorallocate($image_p, 255, 255, 255);
-        $fontFile = file_get_contents($public_file_path . '/front/fonts/lovely_home.ttf');
+        $fontFile = file_get_contents($public_font_path);
 //        $font = '/fonts/home.ttf';
         file_put_contents('font.ttf', $fontFile);
         $font_size = 30;
@@ -42,20 +42,11 @@ class ImgWrite {
         $offset_y = 510;
 
         // Get the size of the text area
-//        $dims = imagettfbbox($font_size, 0, $font, $text);
-//        $dims = imagettfbbox($font_size, 0, 'font.ttf', $text);
-//        var_dump($dims);exit;
-//        $text_width = $dims[4] - $dims[6] + $offset_x;
-//        $text_height = $dims[3] - $dims[5] + $offset_y;
         // Add text background
-//        imagefilledrectangle($image_p, $offset_x, $offset_y, $text_width, $text_height, $bg_color);
         // Add text
-//        imagettftext($image_p, $font_size, 0, $offset_x, $offset_y, $text_color, $font, $text);
         imagettftext($image_p, $font_size, 0, $offset_x, $offset_y, $text_color, 'font.ttf', $memberName);
 
         // Save the picture
-//        header('Content-type: image/png');
-//        imagejpeg($image_p);
         imagejpeg($image_p, $imageSavePath .'/'. $imageSaveName, 100);
 
         // Clear

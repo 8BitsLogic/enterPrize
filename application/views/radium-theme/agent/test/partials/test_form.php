@@ -13,10 +13,10 @@
                 ?>
 
                 <div class="form-group">
-                    <div class="query">
-                        <i class="icon-align-left fa fa-3x fa-question-circle-o"></i> <?php echo $question['question_descp']; ?>
+                    <div class="question">
+                        <i class="icon-align-left fa fa-2x fa-question-circle-o"></i> <?php echo $question['question_descp']; ?>
                     </div>
-                    <div class="choice">
+                    <div class="answer">
                         <ul class="to_do">
                             <?php
                             foreach ($choiceList[$question['fk_question_id']] as $choices) {

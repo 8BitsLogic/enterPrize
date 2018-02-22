@@ -27,7 +27,7 @@ class Training extends Basecontroller{
         $this->data = array(
             'page' => array('title' => 'Trainings'),
             'flashKey' => 'message_dashboard_trainings',
-            'view' => 'site/agent/training/',
+            'view' => $this->theme. 'agent/training/',
             'agentPic' => $this->getAgentPic(),
             'availableFunds' => $this->getAgentAvailableFunds($this->agentDetail['pk_agent_id']),
         );

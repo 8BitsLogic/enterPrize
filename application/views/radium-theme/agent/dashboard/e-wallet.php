@@ -1,14 +1,14 @@
 <?php $this->load->view($view . '../partials/page_title'); ?>
-<section class="pad-top-md pad-bottom-md" id="process-step">
-    <div class="container">
-        <div class="row">
+<section class="default-section">
+    <div class="auto-container">
+        <div class="row clearfix">
             <div class="col-xs-12">
                 <?php
                 echo $this->session->flashdata($flashKey);
                 if (isset($totalFunds) && $totalFunds > 0) {
                     ?>
                     <div class="col-md-12">
-                        <h3 class="text-primary">Request Payment</h3>
+                        <h3>Request Payment</h3>
                         <hr>
                         <div class="col-md-12 col-xs-12 col-md-offset-3">
                             <div class="error">
@@ -38,58 +38,14 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
+    <div class="auto-container">
+        <div class="row clearfix">
             <div class="col-xs-12">
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th colspan="3"><h3 class="text-primary">Account Statement</h3></th>
-                            </tr>
-                            <tr>
-                                <th>Timestamp</th>
-                                <th>Description</th>
-                                <th>Amount In</th>
-                                <th>Amount Out</th>
-                                <th>Balance</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            if (is_array($transactions)) {
-                                $calAmount = 0;
-                                foreach ($transactions as $inKey) {
-                                    ?>
-                                    <tr>
-                                        <td><?php echo date_format(date_create($inKey['transaction_create_date']), 'd-m-Y h:m'); ?></td>
-                                        <td><?php echo $inKey['transaction_descp']; ?></td>
-                                        <td><?php echo $inKey['transaction_type'] == 'deposit' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
-                                        <td><?php echo $inKey['transaction_type'] == 'withdraw' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
-                                        <?php $calAmount = $calAmount + $inKey['transaction_amount']; ?>
-                                        <td><?php echo number_format($calAmount, 2, '.', ','); ?></td>
-                                    </tr>
-                                    <?php
-                                }
-                            } else {
-                                ?>
-                                <tr>
-                                    <td colspan="3" class="alert alert-warning">No data found.</td>
-                                </tr>
-                                <?php
-                            }
-                            ?>
-                        </tbody>
-
-                    </table>
-                </div>
-            </div>
-            <div class="col-xs-12">
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th colspan="3"><h3 class="text-primary">Pending Payout Requests</h3></th>
+                                <th colspan="3"><h3>Pending Payout Requests</h3></th>
                             </tr>
                             <tr>
                                 <th>Request #</th>
@@ -119,6 +75,51 @@
                                 ?>
                                 <tr>
                                     <td colspan="3" class="alert alert-warning">No Payout requests pending.</td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th colspan="3"><h3>Account Statement</h3></th>
+                            </tr>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Description</th>
+                                <th>Amount In</th>
+                                <th>Amount Out</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            if (is_array($transactions)) {
+                                $calAmount = 0;
+                                foreach ($transactions as $inKey) {
+                                    ?>
+                                    <tr>
+                                        <td><?php echo date_format(date_create($inKey['transaction_create_date']), 'd-m-Y h:m'); ?></td>
+                                        <td><?php echo $inKey['transaction_descp']; ?></td>
+                                        <td><?php echo $inKey['transaction_type'] == 'deposit' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
+                                        <td><?php echo $inKey['transaction_type'] == 'withdraw' ? number_format($inKey['transaction_amount'], 2, '.', ',') : ''; ?></td>
+                                        <?php $calAmount = $calAmount + $inKey['transaction_amount']; ?>
+                                        <td><?php echo number_format($calAmount, 2, '.', ','); ?></td>
+                                    </tr>
+                                    <?php
+                                }
+                            } else {
+                                ?>
+                                <tr>
+                                    <td colspan="3" class="alert alert-warning">No data found.</td>
                                 </tr>
                                 <?php
                             }

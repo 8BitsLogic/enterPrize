@@ -141,10 +141,11 @@ class Test extends Basecontroller {
          */
         $imgObj = new ImgWrite();
         $image_filepath = $this->themeUrl . '/images/cert_sample.png';
+        $font = $this->themeUrl. 'css/fonts/lovely_home.ttf';
         $imageSavePath = APPPATH . '/../public/uploads/user/'.$userId.'/certificate';
         $this->certDir($imageSavePath);
         $imageSaveName = 'cert-' . date('Ymd') . '-' . random_string('alnum', 8) .'-'.substr(preg_replace('~[\\\\/:*?"<>|.,!@#$%^&(){}| ]~', '_', $testName), 0, 150). '.jpg';
-        $imgObj->signCertificate(substr($fullName, 0 , 19), $image_filepath, $this->themeUrl, $imageSavePath, $imageSaveName);
+        $imgObj->signCertificate(substr($fullName, 0 , 19), $image_filepath, $font, $imageSavePath, $imageSaveName);
         return $imageSaveName;
     }
     
